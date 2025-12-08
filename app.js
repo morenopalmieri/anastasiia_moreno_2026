@@ -106,7 +106,7 @@ document.getElementById('weddingForm').addEventListener('submit', async (e) => {
         };
         
         // Uncomment below once you have EmailJS Service ID and Template ID
-        await emailjs.send(service_wedding2026, template_jk4uo01, emailParams);
+        await emailjs.send('service_wedding2026', 'template_jk4uo01', emailParams);
 
         alert("Thank you! You have joined the party.");
         window.location.reload();
@@ -119,3 +119,4 @@ document.getElementById('weddingForm').addEventListener('submit', async (e) => {
     }
 
 });
+
