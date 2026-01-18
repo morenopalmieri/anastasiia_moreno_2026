@@ -61,14 +61,14 @@ h1, h2, h3 {
 }
 
 .hero h1 { font-size: 3.5rem; margin-bottom: 10px; }
-.subtitle { font-size: 1.5rem; letter-spacing: 2px; text-transform: uppercase; }
+.subtitle { font-size: 1.5rem; letter-spacing: 1px; }
 .divider { font-size: 2rem; color: var(--secondary); margin: 20px 0; }
 .cta-button { 
     padding: 15px 30px; 
     background: white; 
     color: var(--text); 
     text-decoration: none; 
-    text-transform: uppercase; 
+    text-transform: none; 
     letter-spacing: 1px; 
     transition: 0.3s; 
     border-radius: 4px; 
@@ -331,6 +331,7 @@ footer {
     .activity-card img { width: 100%; height: 200px; }
 
 }
+
 
 
 
