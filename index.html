@@ -81,12 +81,13 @@
             
             <div class="card-grid">
                 <script>
+                    // 3. Improve flipcard game: Front = 1.jpg to 9.jpg | Back = 1B.jpg to 9B.jpg
                     for(let i=1; i<=9; i++) {
                         document.write(`
                             <div class="flip-card" onclick="flipCard(this)">
                                 <div class="flip-card-inner">
-                                    <div class="flip-card-front">${i}</div>
-                                    <div class="flip-card-back" style="background-image: url('assets/lofoten.jpg');"></div>
+                                    <div class="flip-card-front" style="background-image: url('assets/${i}.jpg');"></div>
+                                    <div class="flip-card-back" style="background-image: url('assets/${i}B.jpg');"></div>
                                 </div>
                             </div>
                         `);

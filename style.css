@@ -1,5 +1,25 @@
 ﻿/* General Setup */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap');
+/* 1. Integrate Nexa Fonts from assets folder */
+@font-face {
+    font-family: 'Nexa';
+    src: url('assets/Nexa-Heavy.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Nexa';
+    src: url('assets/Nexa-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Nexa';
+    src: url('assets/Nexa-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
 
 :root {
     --primary: #5e6b54; /* Olive Green */
@@ -13,18 +33,24 @@
 
 body { 
     margin: 0; 
-    font-family: 'Lato', sans-serif; 
+    font-family: 'Nexa', sans-serif; /* Default to Nexa Light/Regular */
+    font-weight: 300; 
     background-color: var(--bg); 
     color: var(--text); 
     line-height: 1.6;
 }
 
-h1, h2, h3 { font-family: 'Playfair Display', serif; }
+/* Use Nexa Heavy for headings */
+h1, h2, h3 { 
+    font-family: 'Nexa', sans-serif; 
+    font-weight: 700; 
+}
 
 /* Hero Section */
 .hero {
     height: 80vh;
-    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    /* 2. Fix background photo */
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('assets/backround.jpg');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -37,7 +63,18 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
 .hero h1 { font-size: 3.5rem; margin-bottom: 10px; }
 .subtitle { font-size: 1.5rem; letter-spacing: 2px; text-transform: uppercase; }
 .divider { font-size: 2rem; color: var(--secondary); margin: 20px 0; }
-.cta-button { padding: 15px 30px; background: white; color: var(--text); text-decoration: none; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; border-radius: 4px; }
+.cta-button { 
+    padding: 15px 30px; 
+    background: white; 
+    color: var(--text); 
+    text-decoration: none; 
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
+    transition: 0.3s; 
+    border-radius: 4px; 
+    font-family: 'Nexa', sans-serif;
+    font-weight: 700;
+}
 .cta-button:hover { background: var(--secondary); color: white; }
 
 /* Section Containers */
@@ -65,7 +102,7 @@ form {
 
 .form-group { 
     display: flex; 
-    flex-direction: column; /* Better for mobile-first */
+    flex-direction: column; 
     gap: 5px; 
     margin-bottom: 15px; 
 }
@@ -76,7 +113,7 @@ form {
 }
 
 .form-group label {
-    font-weight: bold;
+    font-weight: 700;
     font-size: 0.9rem;
     color: var(--primary);
     margin-bottom: 2px;
@@ -87,7 +124,8 @@ input, select {
     padding: 12px; 
     border: 1px solid #ddd; 
     border-radius: 4px; 
-    font-family: 'Lato', sans-serif; 
+    font-family: 'Nexa', sans-serif;
+    font-weight: 300; 
     box-sizing: border-box;
 }
 
@@ -102,7 +140,8 @@ input, select {
     margin-top: 20px; 
     border-radius: 4px;
     transition: background 0.3s;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Nexa', sans-serif;
+    font-weight: 700;
 }
 
 .submit-btn:hover { background-color: var(--primary-dark); }
@@ -117,6 +156,8 @@ input, select {
     margin: 20px auto; 
     border-radius: 4px;
     transition: 0.3s;
+    font-family: 'Nexa', sans-serif;
+    font-weight: 700;
 }
 
 .secondary-btn:hover {
@@ -124,19 +165,22 @@ input, select {
     color: white;
 }
 
-/* Honeymoon Flip Cards */
+/* 3. Improve Honeymoon Flip Cards */
 .card-grid {
     display: grid;
-    grid-template-columns: repeat(3, 100px);
-    grid-gap: 15px;
+    /* Increased size 100px -> 120px */
+    grid-template-columns: repeat(3, 120px);
+    /* Reduced gap 15px -> 7.5px */
+    grid-gap: 7.5px;
     justify-content: center;
     margin: 30px auto;
 }
 
 .flip-card {
     background-color: transparent;
-    width: 100px;
-    height: 100px;
+    /* Increased size 100px -> 120px */
+    width: 120px;
+    height: 120px;
     perspective: 1000px;
     cursor: pointer;
 }
@@ -159,26 +203,20 @@ input, select {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    /* Removed flex centering and borders to let images fill completely */
+    background-size: cover;
+    background-position: center;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 .flip-card-front {
-    background-color: #f8f9fa;
-    color: var(--primary);
-    font-size: 24px;
-    font-weight: bold;
-    border: 2px solid #eee;
+    background-color: #f8f9fa; /* Fallback */
+    /* Removed text styling as we now use images */
 }
 
 .flip-card-back {
-    background-color: #fff;
+    background-color: #fff; /* Fallback */
     transform: rotateY(180deg);
-    background-size: cover;
-    background-position: center;
-    border: 2px solid var(--secondary);
 }
 
 .contribution-info {
@@ -268,7 +306,8 @@ footer {
     text-align: center;
     background: var(--primary);
     color: white;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Nexa', sans-serif;
+    font-weight: 700;
 }
 
 /* Animations */
@@ -284,8 +323,10 @@ footer {
 /* Mobile Adjustments */
 @media (max-width: 600px) {
     .hero h1 { font-size: 2.5rem; }
-    .card-grid { grid-template-columns: repeat(3, 80px); }
-    .flip-card { width: 80px; height: 80px; }
+    /* Adjusted for new card size 120px + gap 7.5px. 3 columns might be tight on small screens, so auto-fit logic or small scaling is safer */
+    .card-grid { grid-template-columns: repeat(3, 100px); grid-gap: 5px; } /* Slightly smaller for mobile if 120px is too wide */
+    .flip-card { width: 100px; height: 100px; }
+    
     .activity-card { flex-direction: column; }
     .activity-card img { width: 100%; height: 200px; }
 }
