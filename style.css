@@ -2,21 +2,21 @@
 /* 1. Integrate Nexa Fonts from assets folder */
 @font-face {
     font-family: 'Nexa';
-    src: url('assets/Nexa-Heavy.ttf') format('truetype');
+    src: url('assets/nexa-script-heavy.ttf') format('truetype');
     font-weight: 700;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Nexa';
-    src: url('assets/Nexa-Light.ttf') format('truetype');
+    src: url('assets/nexa-script-light.ttf') format('truetype');
     font-weight: 300;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Nexa';
-    src: url('assets/Nexa-Thin.ttf') format('truetype');
+    src: url('assets/nexa-script-thin.ttf') format('truetype');
     font-weight: 100;
     font-style: normal;
 }
@@ -331,4 +331,5 @@ footer {
     .activity-card img { width: 100%; height: 200px; }
 
 }
+
 
