@@ -32,7 +32,6 @@
     --bg: #f9f9f9; /* Light grey background for the page */
     --text: #333; /* Dark grey for readable text */
     --white: #ffffff; /* Pure white */
-	--blu: #04016f; /* blu writing */
     --shadow: 0 4px 15px rgba(0,0,0,0.05); /* Soft shadow for cards/forms */
 }
 
@@ -65,7 +64,7 @@ h1, h2, h3 {
     align-items: center; /* Centers content vertically */
     justify-content: center; /* Centers content horizontally */
     text-align: center; /* Centers text */
-    color: blu; /* Text color on top of image */
+    color: var(--primary); /* Text color on top of image */
 }
 
 .hero h1 { 
@@ -86,7 +85,7 @@ h1, h2, h3 {
 
 .cta-button { 
     padding: 15px 30px; /* Space inside the button */
-    background: blu; /* Button color */
+    background: var(--primary); /* Button color */
     color: white; /* Button text color */
     text-decoration: none; /* Removes underline from link */
     text-transform: none; /* Keeps text case as written */
@@ -221,7 +220,7 @@ input, select {
 .card-grid {
     display: grid;
     /* SIZE OF THE GRID: 150px is the width of each card */
-    grid-template-columns: repeat(3, 120px); 
+    grid-template-columns: repeat(3, 150px); 
     /* SPACE BETWEEN CARDS */
     grid-gap: 7.5px;
     justify-content: center; /* Centers the whole grid */
