@@ -72,7 +72,7 @@ h1, h2, h3 {
 }
 
 .hero h1 { 
-    font-size: 4.5rem; /* Larger hero title */
+    font-size: 6rem; /* Larger hero title */
     margin-bottom: 10px; /* Space below title */
 }
 
@@ -277,6 +277,7 @@ input, select {
     font-weight: 700; /* Bold name */
     color: var(--primary);
     margin-bottom: 5px;
+	font-size: 1.2rem; /* Increased from the default size */
 }
 
 .iban-label {
@@ -342,7 +343,7 @@ footer {
     /* MODIFICATION: Force single lines for IBAN details on small screens */
     .iban-name {
         white-space: nowrap; /* Forces name to stay on one line */
-        font-size: 1rem; /* Slightly smaller to fit width if necessary */
+        font-size: 1.15rem; /* Slightly smaller to fit width if necessary */
     }
     
     .iban-code {
