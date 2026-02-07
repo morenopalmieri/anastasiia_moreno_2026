@@ -4,54 +4,52 @@
 
 /* 1. Integrate Nexa Fonts from assets folder */
 @font-face {
-    font-family: 'Nexa'; /* Name for the font family */
-    src: url('assets/nexa-script-heavy.ttf') format('truetype'); /* Heavy weight font file */
-    font-weight: 700; /* Bold weight assignment */
-    font-style: normal; /* Normal style */
+    font-family: 'Nexa';
+    src: url('assets/nexa-script-heavy.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
 }
 
 @font-face {
-    font-family: 'Nexa'; /* Name for the font family */
-    src: url('assets/nexa-script-light.ttf') format('truetype'); /* Light weight font file */
-    font-weight: 300; /* Light weight assignment */
-    font-style: normal; /* Normal style */
+    font-family: 'Nexa';
+    src: url('assets/nexa-script-light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
 }
 
 @font-face {
-    font-family: 'Nexa'; /* Name for the font family */
-    src: url('assets/nexa-script-thin.ttf') format('truetype'); /* Thin weight font file */
-    font-weight: 150; /* Ultra-thin weight assignment */
-    font-style: normal; /* Normal style */
+    font-family: 'Nexa';
+    src: url('assets/nexa-script-thin.ttf') format('truetype');
+    font-weight: 150;
+    font-style: normal;
 }
 
 /* Global Variables */
 :root {
     --primary: #04016f; /* Main brand blue */
-    --primary-dark: #030145; /* Darker blue for hover states */
-    --secondary: #ccae45; /* Gold accent color for details */
-    --bg: #f9f9f9; /* Soft grey background for the whole page */
-    --text: #333; /* Dark charcoal for body text readability */
-    --white: #ffffff; /* Standard white */
-    --shadow: 0 4px 15px rgba(0,0,0,0.05); /* Subtle shadow for depth */
+    --primary-dark: #030145; 
+    --secondary: #ccae45; /* Gold accent color */
+    --bg: #f9f9f9; 
+    --text: #333; 
+    --white: #ffffff; 
+    --shadow: 0 4px 15px rgba(0,0,0,0.05); 
 }
 
 body { 
-    margin: 0; /* Remove default browser spacing */
-    font-family: 'Nexa', sans-serif; /* Primary font family */
-    font-weight: 300; /* Default light weight */
-    background-color: var(--bg); /* Set page background */
-    color: var(--text); /* Set default text color */
-    line-height: 1.5; /* Vertical space between lines */
-    /* MODIFICATION 4: Increased base font size by 20% (1rem -> 1.2rem) */
-    font-size: 1.2rem; 
+    margin: 0; 
+    font-family: 'Nexa', sans-serif; 
+    font-weight: 300; 
+    background-color: var(--bg); 
+    color: var(--text); 
+    line-height: 1.5; 
+    font-size: 1.2rem; /* Increased base font size by 20% */
 }
 
 /* Headlines Styling */
 h1, h2, h3 { 
-    font-family: 'Nexa', sans-serif; /* Ensure headers use Nexa */
-    font-weight: 700; /* Bold headers */
-    /* MODIFICATION 1: Applied primary blue color to all headers */
-    color: var(--primary); 
+    font-family: 'Nexa', sans-serif; 
+    font-weight: 700; 
+    color: var(--primary); /* All headers use primary blue */
 }
 
 /* =========================================
@@ -59,50 +57,47 @@ h1, h2, h3 {
    ========================================= */
 
 .hero {
-    height: 80vh; /* Takes up 80% of screen height */
-    /* HERO OPACITY: Currently at 0.1 (very light overlay) */
+    height: 80vh; 
     background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('assets/Background.jpg');
-    background-size: cover; /* Background fills entire space */
-    background-position: center; /* Background centered */
-    display: flex; /* Flexbox for alignment */
-    align-items: center; /* Vertical center */
-    justify-content: center; /* Horizontal center */
-    text-align: center; /* Center text inside */
-    color: var(--primary); /* Text color for Hero section */
+    background-size: cover; 
+    background-position: center; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    text-align: center; 
+    color: var(--primary); 
 }
 
 .hero h1 { 
-    font-size: 4.5rem; /* Main Hero title size (kept original as requested) */
-    margin-bottom: 10px; /* Space below title */
+    font-size: 4.5rem; 
+    margin-bottom: 10px; 
 }
 
 .subtitle { 
-    font-size: 2rem; /* Hero subtitle size (kept original as requested) */
-    letter-spacing: 1px; /* Slight horizontal spacing */
+    font-size: 2rem; 
+    letter-spacing: 1px; 
 }
 
 .divider { 
-    font-size: 2rem; /* Divider icon size */
-    color: var(--secondary); /* Gold color for divider */
-    margin: 20px 0; /* Vertical space around divider */
+    font-size: 2rem; 
+    color: var(--secondary); 
+    margin: 20px 0; 
 }
 
 .cta-button { 
-    padding: 15px 30px; /* Internal button spacing */
-    background: var(--primary); /* Button background */
-    color: white; /* Button text color */
-    text-decoration: none; /* No underline */
-    text-transform: none; /* No auto-caps */
-    letter-spacing: 1px; /* Slight letter spacing */
-    transition: 0.3s; /* Smooth hover transition */
-    border-radius: 4px; /* Slightly rounded edges */
-    font-family: 'Nexa', sans-serif; /* Button font */
-    font-weight: 700; /* Bold text */
+    padding: 15px 30px; 
+    background: var(--primary); 
+    color: white; 
+    text-decoration: none; 
+    transition: 0.3s; 
+    border-radius: 4px; 
+    font-family: 'Nexa', sans-serif; 
+    font-weight: 700;
 }
 
 .cta-button:hover { 
-    background: var(--secondary); /* Turn gold on hover */
-    color: var(--primary-dark); /* Text turns dark blue on hover */
+    background: var(--secondary); 
+    color: var(--primary-dark); 
 }
 
 /* =========================================
@@ -110,32 +105,30 @@ h1, h2, h3 {
    ========================================= */
 
 .container, .section-container { 
-    max-width: 800px; /* Limit width for reading comfort */
-    margin: 0 auto; /* Center container on screen */
-    /* MODIFICATION 2 & 3: Reduced padding by 30% (from 60px to 42px) */
-    padding: 42px 20px; 
-    text-align: center; /* Center section contents */
+    max-width: 800px; 
+    margin: 0 auto; 
+    padding: 42px 20px; /* Reduced padding by 30% */
+    text-align: center; 
 }
 
 .info-section { 
-    background: var(--white); /* White background for info blocks */
+    background: var(--white); 
 }
 
 .info-card { 
-    margin: 15px 0; /* Vertical margin between cards */
+    margin: 15px 0; 
 }
 
-/* Icon Styling */
 .info-card i { 
-    font-size: 3rem; /* Large icon size */
-    color: var(--primary); /* Blue color for icons */
-    margin-bottom: 7px; /* Space below icon */
+    font-size: 3rem; 
+    color: var(--primary); 
+    margin-bottom: 7px; 
 }
 
 .map-link { 
-    color: var(--primary); /* Link color */
-    text-decoration: underline; /* Standard underline */
-    font-weight: bold; /* Bold link */
+    color: var(--primary); 
+    text-decoration: underline; 
+    font-weight: bold; 
 }
 
 /* =========================================
@@ -143,80 +136,71 @@ h1, h2, h3 {
    ========================================= */
 
 form { 
-    background: var(--white); /* Form background color */
-    padding: 30px; /* Inside space for form */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: var(--shadow); /* Shadow effect */
-    margin-top: 20px; /* Space above form */
-    text-align: left; /* Align form text to left */
+    background: var(--white); 
+    padding: 30px; 
+    border-radius: 8px; 
+    box-shadow: var(--shadow); 
+    margin-top: 20px; 
+    text-align: left; 
 }
 
 .form-group { 
-    display: flex; /* Flexbox for inputs */
-    flex-direction: column; /* Stacked on mobile */
-    gap: 5px; /* Gap between label and input */
-    margin-bottom: 15px; /* Margin between groups */
+    display: flex; 
+    flex-direction: column; 
+    gap: 5px; 
+    margin-bottom: 15px; 
 }
 
-/* Responsive Form Layout */
 @media (min-width: 600px) {
-    .form-group { flex-direction: row; gap: 10px; } /* Side-by-side on desktop */
-    .form-group > * { flex: 1; } /* Equal width for groups */
+    .form-group { flex-direction: row; gap: 10px; } 
+    .form-group > * { flex: 1; } 
 }
 
 .form-group label {
-    font-weight: 700; /* Bold labels */
-    /* MODIFICATION 4: Increased label size by 20% (0.9rem -> 1.1rem) */
+    font-weight: 700; 
     font-size: 1.1rem; 
-    color: var(--primary); /* Blue label color */
-    margin-bottom: 2px; /* Small space below label */
+    color: var(--primary); 
+    margin-bottom: 2px;
 }
 
 input, select { 
-    width: 100%; /* Full width inputs */
-    padding: 12px; /* Internal input padding */
-    border: 1px solid #ddd; /* Light grey border */
-    border-radius: 4px; /* Rounded corners */
-    font-family: 'Nexa', sans-serif; /* Input font */
-    font-weight: 300; /* Light weight for typing */
-    box-sizing: border-box; /* Include padding in width */
+    width: 100%; 
+    padding: 12px; 
+    border: 1px solid #ddd; 
+    border-radius: 4px; 
+    font-family: 'Nexa', sans-serif;
+    font-weight: 300; 
+    box-sizing: border-box; 
 }
 
 .submit-btn { 
-    width: 100%; /* Full width button */
-    padding: 15px; /* Vertical button height */
-    background-color: var(--primary); /* Blue background */
-    color: white; /* White text */
-    border: none; /* Remove border */
-    /* MODIFICATION 4: Increased button text by 20% (1.1rem -> 1.32rem) */
+    width: 100%; 
+    padding: 15px; 
+    background-color: var(--primary); 
+    color: white; 
+    border: none; 
     font-size: 1.32rem; 
-    cursor: pointer; /* Pointer cursor on hover */
-    margin-top: 20px; /* Space above button */
-    border-radius: 4px; /* Rounded corners */
-    transition: background 0.3s; /* Fade transition */
-    font-family: 'Nexa', sans-serif; /* Button font */
-    font-weight: 700; /* Bold button text */
+    cursor: pointer; 
+    margin-top: 20px; 
+    border-radius: 4px;
+    transition: background 0.3s;
+    font-family: 'Nexa', sans-serif;
+    font-weight: 700;
 }
 
-.submit-btn:hover { background-color: var(--primary-dark); } /* Darker on hover */
+.submit-btn:hover { background-color: var(--primary-dark); }
 
 .secondary-btn { 
-    background: none; /* Transparent background */
-    border: 1px solid var(--primary); /* Blue border */
-    color: var(--primary); /* Blue text */
-    padding: 10px 20px; /* Button padding */
-    cursor: pointer; /* Pointer cursor */
-    display: block; /* Block layout */
-    margin: 20px auto; /* Centered with vertical margin */
-    border-radius: 4px; /* Rounded corners */
-    transition: 0.3s; /* Transition speed */
-    font-family: 'Nexa', sans-serif; /* Button font */
-    font-weight: 700; /* Bold button text */
-}
-
-.secondary-btn:hover {
-    background: var(--primary); /* Fills with blue */
-    color: white; /* Text turns white */
+    background: none; 
+    border: 1px solid var(--primary); 
+    color: var(--primary); 
+    padding: 10px 20px; 
+    cursor: pointer; 
+    display: block; 
+    margin: 20px auto; 
+    border-radius: 4px;
+    font-family: 'Nexa', sans-serif;
+    font-weight: 700;
 }
 
 /* =========================================
@@ -224,180 +208,133 @@ input, select {
    ========================================= */
 
 .card-grid {
-    display: grid; /* Enable CSS Grid */
-    grid-template-columns: repeat(3, 150px); /* 3 columns of 120px */
-    grid-gap: 5px; /* Space between cards */
-    justify-content: center; /* Center cards horizontally */
-    margin: 30px auto; /* Vertical margin */
+    display: grid;
+    grid-template-columns: repeat(3, 150px); /* 3 columns for desktop */
+    grid-gap: 5px; 
+    justify-content: center; 
+    margin: 30px auto; 
 }
 
 .flip-card {
-    background-color: transparent; /* Transparent container */
-    width: 150px; /* Card width */
-    height: 150px; /* Card height */
-    perspective: 1000px; /* Depth effect for flip */
-    cursor: pointer; /* Clickable cursor */
+    background-color: transparent;
+    width: 150px; 
+    height: 150px; 
+    perspective: 1000px; 
+    cursor: pointer;
 }
 
 .flip-card-inner {
-    position: relative; /* Relative positioning for children */
-    width: 100%; /* Full card width */
-    height: 100%; /* Full card height */
-    text-align: center; /* Center card content */
-    transition: transform 0.6s; /* Flip animation speed */
-    transform-style: preserve-3d; /* Maintains 3D look */
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
 }
 
-.flip-card.flipped .flip-card-inner { transform: rotateY(180deg); } /* Rotation logic */
+.flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
 
 .flip-card-front, .flip-card-back {
-    position: absolute; /* Stack front and back */
-    width: 100%; /* Fill container width */
-    height: 100%; /* Fill container height */
-    -webkit-backface-visibility: hidden; /* Hide back side when turned */
-    backface-visibility: hidden; /* Standard backface property */
-    border-radius: 8px; /* Rounded card corners */
-    background-size: cover; /* Background image covers card */
-    background-position: center; /* Background image centered */
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Card shadow */
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 8px;
+    background-size: cover; 
+    background-position: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-.flip-card-front {
-    background-color: #f8f9fa; /* Default light color for front */
-}
-
-.flip-card-back {
-    background-color: #fff; /* White back for card */
-    transform: rotateY(180deg); /* Start rotated away */
-}
+.flip-card-front { background-color: #f8f9fa; }
+.flip-card-back { background-color: #fff; transform: rotateY(180deg); }
 
 .contribution-info {
-    margin-top: 30px; /* Space above IBAN area */
-    padding: 20px; /* Padding inside IBAN area */
-    background-color: var(--white); /* White background for box */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: var(--shadow); /* Soft shadow */
+    margin-top: 30px;
+    padding: 20px;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+/* Target the text within contribution-info for standard views */
+.contribution-info p {
+    margin: 10px 0;
 }
 
 .iban {
-    font-family: monospace; /* Monospace for alignment */
-    /* MODIFICATION 4: Increased IBAN font size by 20% (1.1em -> 1.32em) */
+    font-family: monospace;
     font-size: 1.32em; 
-    color: var(--primary-dark); /* Dark blue color */
-    word-break: break-all; /* Wrap on mobile screens */
+    color: var(--primary-dark);
+    word-break: break-all;
 }
 
 /* =========================================
    LISTS & ACCOMMODATION
    ========================================= */
 
-.pickup-points {
-    list-style: none; /* Remove default bullets */
-    padding: 0; /* Remove padding */
-    text-align: left; /* Left align items */
-    display: inline-block; /* Wrap to content width */
-}
-
-.pickup-points li {
-    margin-bottom: 15px; /* Vertical space between points */
-    padding: 10px; /* Inner padding for points */
-    background: var(--white); /* White background for list items */
-    border-radius: 4px; /* Slightly rounded */
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.02); /* Very faint shadow */
-}
-
-.accommodation-lists {
-    display: flex; /* Flexbox columns */
-    flex-wrap: wrap; /* Wrap on smaller screens */
-    justify-content: space-between; /* Space out columns */
-    margin-bottom: 40px; /* Bottom margin */
-}
-
-.town-list {
-    flex: 1; /* Stretch columns equally */
-    min-width: 300px; /* Prevent too narrow columns */
-    margin: 10px; /* Gap between columns */
-    text-align: left; /* Left align hotel lists */
-}
-
-.town-list ul { list-style: none; padding: 0; } /* Remove hotel bullets */
-
-.town-list li {
-    margin-bottom: 20px; /* Space between hotel entries */
-    border-bottom: 1px solid #eee; /* Light divider line */
-    padding-bottom: 10px; /* Space above divider */
-}
-
-.town-list li a {
-    display: inline-block; /* Block links */
-    margin-top: 5px; /* Space above hotel link */
-    color: var(--secondary); /* Gold link color */
-    text-decoration: none; /* No underline */
-    font-weight: bold; /* Bold link */
-}
-
 .activity-card {
-    display: flex; /* Image and text side-by-side */
-    align-items: center; /* Vertical center alignment */
-    background: var(--white); /* Card background */
-    margin-bottom: 20px; /* Space below card */
-    border-radius: 8px; /* Rounded card */
-    overflow: hidden; /* Hide image overflow */
-    box-shadow: var(--shadow); /* Soft shadow */
-    text-align: left; /* Left text alignment */
+    display: flex;
+    align-items: center;
+    background: var(--white);
+    margin-bottom: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
 }
 
 .activity-card img {
-    width: 140px; /* Fixed width for activity image */
-    height: 140px; /* Fixed height */
-    object-fit: cover; /* Zoom image without distortion */
+    width: 140px; 
+    height: 140px;
+    object-fit: cover;
 }
 
-.activity-text { padding: 20px; } /* Padding for text area */
-.activity-text h4 { margin: 0 0 10px 0; color: var(--primary); } /* Blue title */
-
-/* =========================================
-   FOOTER
-   ========================================= */
+.activity-text { padding: 20px; text-align: left; }
+.activity-text h4 { margin: 0 0 10px 0; color: var(--primary); }
 
 footer {
-    padding: 40px 20px; /* Footer inner spacing */
-    text-align: center; /* Centered text */
-    background: var(--primary); /* Blue footer */
-    color: white; /* White text */
-    font-family: 'Nexa', sans-serif; /* Footer font */
-    font-weight: 700; /* Bold footer text */
+    padding: 40px 20px;
+    text-align: center;
+    background: var(--primary);
+    color: white;
+    font-family: 'Nexa', sans-serif;
+    font-weight: 700;
 }
 
 /* =========================================
-   ANIMATIONS
-   ========================================= */
-
-.guest-entry { 
-    border-top: 1px dashed #ccc; /* Dashed separator */
-    padding-top: 15px; /* Top padding */
-    margin-top: 15px; /* Top margin */
-    animation: fadeIn 0.5s ease-in; /* Trigger fade animation */
-}
-
-@keyframes fadeIn { 
-    from { opacity: 0; transform: translateY(10px); } /* Start invisible and lower */
-    to { opacity: 1; transform: translateY(0); } /* End visible and in place */
-}
-
-/* =========================================
-   MOBILE RESPONSIVENESS
+   MOBILE RESPONSIVENESS (600px and below)
    ========================================= */
 
 @media (max-width: 600px) {
-    .hero h1 { font-size: 2.5rem; } /* Smaller title for mobile phones */
-    
+    .hero h1 { font-size: 2.5rem; }
+
+    /* MODIFICATION 2: Horizontal spacing reduced, vertical preserved, grid centered */
     .card-grid { 
-        grid-template-columns: repeat(3, 100px); /* Maintain 3 columns */
-        grid-gap: 5px; /* Tighter gap for mobile */
+        grid-template-columns: repeat(3, 100px); 
+        column-gap: 2px; /* Reduced horizontal gap specifically */
+        row-gap: 5px;    /* Kept vertical gap as requested */
+        justify-content: center; /* Ensures grid stays centered */
     }
-    .flip-card { width: 100px; height: 100px; } /* Slightly smaller cards for mobile */
-    
-    .activity-card { flex-direction: column; } /* Stack image on top of text */
-    .activity-card img { width: 100%; height: 200px; } /* Full width image for mobile */
+    .flip-card { width: 100px; height: 100px; }
+
+    /* MODIFICATION 1: IBAN Mobile adjustments */
+    .contribution-info {
+        padding: 15px 10px; /* Tighter padding for mobile */
+    }
+
+    /* Target the name "Moreno Andrea Palmieri" and the IBAN code specifically */
+    .contribution-info p, .iban {
+        font-size: 0.95rem; /* Reduced size to fit width */
+        white-space: nowrap; /* Forces text to stay on one line */
+        display: block; /* Ensures they stack vertically */
+        overflow: hidden; /* Safety for very small screens */
+        text-overflow: ellipsis; 
+    }
+
+    .iban {
+        margin-top: 5px;
+        font-weight: 700;
+    }
+
+    .activity-card { flex-direction: column; }
+    .activity-card img { width: 100%; height: 200px; }
 }
