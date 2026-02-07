@@ -2,54 +2,56 @@
    GENERAL SETUP & VARIABLES
    ========================================= */
 
-/* 1. Integrate Nexa Fonts from assets folder */
+/* 1. Integrate Nexa Fonts */
 @font-face {
-    font-family: 'Nexa';
+    font-family: 'Nexa'; /* Reference name */
     src: url('assets/nexa-script-heavy.ttf') format('truetype');
-    font-weight: 700;
+    font-weight: 700; /* Bold weight */
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Nexa';
     src: url('assets/nexa-script-light.ttf') format('truetype');
-    font-weight: 300;
+    font-weight: 300; /* Standard light weight */
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Nexa';
     src: url('assets/nexa-script-thin.ttf') format('truetype');
-    font-weight: 150;
+    font-weight: 150; /* Extra thin weight */
     font-style: normal;
 }
 
 /* Global Variables */
 :root {
     --primary: #04016f; /* Main brand blue */
-    --primary-dark: #030145; 
-    --secondary: #ccae45; /* Gold accent color */
-    --bg: #f9f9f9; 
-    --text: #333; 
-    --white: #ffffff; 
-    --shadow: 0 4px 15px rgba(0,0,0,0.05); 
+    --primary-dark: #030145; /* Darker blue for hover states */
+    --secondary: #ccae45; /* Gold accent color for details */
+    --bg: #f9f9f9; /* Soft grey background for the whole page */
+    --text: #333; /* Dark charcoal for body text readability */
+    --white: #ffffff; /* Standard white */
+    --shadow: 0 4px 15px rgba(0,0,0,0.05); /* Subtle shadow for depth */
 }
 
 body { 
-    margin: 0; 
-    font-family: 'Nexa', sans-serif; 
-    font-weight: 300; 
-    background-color: var(--bg); 
-    color: var(--text); 
-    line-height: 1.5; 
-    font-size: 1.2rem; /* Increased base font size by 20% */
+    margin: 0; /* Remove default browser spacing */
+    font-family: 'Nexa', sans-serif; /* Primary font family */
+    font-weight: 300; /* Default light weight */
+    background-color: var(--bg); /* Set page background */
+    color: var(--text); /* Set default text color */
+    line-height: 1.5; /* Vertical space between lines */
+    /* MODIFICATION: Increased base font size by 20% (1rem -> 1.2rem) */
+    font-size: 1.2rem; 
 }
 
 /* Headlines Styling */
 h1, h2, h3 { 
-    font-family: 'Nexa', sans-serif; 
-    font-weight: 700; 
-    color: var(--primary); /* All headers use primary blue */
+    font-family: 'Nexa', sans-serif; /* Ensure headers use Nexa */
+    font-weight: 700; /* Bold headers */
+    /* MODIFICATION: Applied primary blue color to all headers */
+    color: var(--primary); 
 }
 
 /* =========================================
@@ -57,46 +59,47 @@ h1, h2, h3 {
    ========================================= */
 
 .hero {
-    height: 80vh; 
+    height: 80vh; /* Takes up 80% of screen height */
+    /* Hero Opacity set via linear-gradient alpha (0.1) */
     background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('assets/Background.jpg');
-    background-size: cover; 
-    background-position: center; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    text-align: center; 
-    color: var(--primary); 
+    background-size: cover; /* Background fills entire space */
+    background-position: center; /* Background centered */
+    display: flex; /* Flexbox for alignment */
+    align-items: center; /* Vertical center */
+    justify-content: center; /* Horizontal center */
+    text-align: center; /* Center text inside */
+    color: var(--primary); /* Text color for Hero section */
 }
 
 .hero h1 { 
-    font-size: 4.5rem; 
-    margin-bottom: 10px; 
+    font-size: 4.5rem; /* Larger hero title */
+    margin-bottom: 10px; /* Space below title */
 }
 
 .subtitle { 
-    font-size: 2rem; 
-    letter-spacing: 1px; 
+    font-size: 2rem; /* Hero subtitle size */
+    letter-spacing: 1px; /* Slight horizontal spacing */
 }
 
 .divider { 
-    font-size: 2rem; 
-    color: var(--secondary); 
-    margin: 20px 0; 
+    font-size: 2rem; /* Divider icon size */
+    color: var(--secondary); /* Gold color for divider */
+    margin: 20px 0; /* Vertical space around divider */
 }
 
 .cta-button { 
-    padding: 15px 30px; 
-    background: var(--primary); 
-    color: white; 
-    text-decoration: none; 
-    transition: 0.3s; 
-    border-radius: 4px; 
+    padding: 15px 30px; /* Internal button spacing */
+    background: var(--primary); /* Button background */
+    color: white; /* Button text color */
+    text-decoration: none; /* No underline */
+    transition: 0.3s; /* Smooth hover transition */
+    border-radius: 4px; /* Slightly rounded edges */
     font-family: 'Nexa', sans-serif; 
-    font-weight: 700;
+    font-weight: 700; 
 }
 
 .cta-button:hover { 
-    background: var(--secondary); 
+    background: var(--secondary); /* Turn gold on hover */
     color: var(--primary-dark); 
 }
 
@@ -105,30 +108,25 @@ h1, h2, h3 {
    ========================================= */
 
 .container, .section-container { 
-    max-width: 800px; 
-    margin: 0 auto; 
-    padding: 42px 20px; /* Reduced padding by 30% */
-    text-align: center; 
+    max-width: 800px; /* Limit width for reading comfort */
+    margin: 0 auto; /* Center container on screen */
+    /* MODIFICATION: Reduced padding by 30% (60px * 0.7 = 42px) */
+    padding: 42px 20px; 
+    text-align: center; /* Center section contents */
 }
 
 .info-section { 
-    background: var(--white); 
+    background: var(--white); /* White background for info blocks */
 }
 
 .info-card { 
-    margin: 15px 0; 
+    margin: 15px 0; /* Vertical margin between cards */
 }
 
 .info-card i { 
-    font-size: 3rem; 
-    color: var(--primary); 
-    margin-bottom: 7px; 
-}
-
-.map-link { 
-    color: var(--primary); 
-    text-decoration: underline; 
-    font-weight: bold; 
+    font-size: 3rem; /* Large icon size */
+    color: var(--primary); /* Blue color for icons */
+    margin-bottom: 7px; /* Space below icon */
 }
 
 /* =========================================
@@ -158,19 +156,8 @@ form {
 
 .form-group label {
     font-weight: 700; 
-    font-size: 1.1rem; 
+    font-size: 1.1rem; /* Increased 20% from 0.9rem */
     color: var(--primary); 
-    margin-bottom: 2px;
-}
-
-input, select { 
-    width: 100%; 
-    padding: 12px; 
-    border: 1px solid #ddd; 
-    border-radius: 4px; 
-    font-family: 'Nexa', sans-serif;
-    font-weight: 300; 
-    box-sizing: border-box; 
 }
 
 .submit-btn { 
@@ -179,25 +166,8 @@ input, select {
     background-color: var(--primary); 
     color: white; 
     border: none; 
-    font-size: 1.32rem; 
+    font-size: 1.32rem; /* Increased 20% from 1.1rem */
     cursor: pointer; 
-    margin-top: 20px; 
-    border-radius: 4px;
-    transition: background 0.3s;
-    font-family: 'Nexa', sans-serif;
-    font-weight: 700;
-}
-
-.submit-btn:hover { background-color: var(--primary-dark); }
-
-.secondary-btn { 
-    background: none; 
-    border: 1px solid var(--primary); 
-    color: var(--primary); 
-    padding: 10px 20px; 
-    cursor: pointer; 
-    display: block; 
-    margin: 20px auto; 
     border-radius: 4px;
     font-family: 'Nexa', sans-serif;
     font-weight: 700;
@@ -208,15 +178,15 @@ input, select {
    ========================================= */
 
 .card-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 150px); /* 3 columns for desktop */
-    grid-gap: 5px; 
-    justify-content: center; 
+    display: grid; 
+    grid-template-columns: repeat(3, 150px); /* 3 columns of 150px */
+    grid-gap: 5px; /* Spacing between cards */
+    justify-content: center; /* Center cards horizontally */
     margin: 30px auto; 
 }
 
 .flip-card {
-    background-color: transparent;
+    background-color: transparent; 
     width: 150px; 
     height: 150px; 
     perspective: 1000px; 
@@ -224,117 +194,126 @@ input, select {
 }
 
 .flip-card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    transition: transform 0.6s;
-    transform-style: preserve-3d;
+    position: relative; 
+    width: 100%; 
+    height: 100%; 
+    transition: transform 0.6s; 
+    transform-style: preserve-3d; 
 }
 
-.flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+.flip-card.flipped .flip-card-inner { transform: rotateY(180deg); } 
 
 .flip-card-front, .flip-card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    border-radius: 8px;
+    position: absolute; 
+    width: 100%; 
+    height: 100%; 
+    backface-visibility: hidden; 
+    border-radius: 8px; 
     background-size: cover; 
     background-position: center;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
 }
 
-.flip-card-front { background-color: #f8f9fa; }
-.flip-card-back { background-color: #fff; transform: rotateY(180deg); }
-
-.contribution-info {
-    margin-top: 30px;
-    padding: 20px;
-    background-color: var(--white);
-    border-radius: 8px;
-    box-shadow: var(--shadow);
-}
-
-/* Target the text within contribution-info for standard views */
-.contribution-info p {
-    margin: 10px 0;
-}
-
-.iban {
-    font-family: monospace;
-    font-size: 1.32em; 
-    color: var(--primary-dark);
-    word-break: break-all;
+.flip-card-back {
+    background-color: #fff; 
+    transform: rotateY(180deg); 
 }
 
 /* =========================================
-   LISTS & ACCOMMODATION
+   NEW IBAN STYLING (LINKED TO HTML CHANGES)
+   ========================================= */
+
+.contribution-info {
+    margin-top: 30px; 
+    padding: 20px; 
+    background-color: var(--white); 
+    border-radius: 8px; 
+    box-shadow: var(--shadow); 
+}
+
+.iban-container {
+    margin-top: 15px;
+    display: block; /* Ensures container fills width */
+}
+
+.iban-name {
+    font-weight: 700; /* Bold name */
+    color: var(--primary);
+    margin-bottom: 5px;
+}
+
+.iban-label {
+    font-weight: 300;
+    font-size: 1rem;
+    color: var(--text);
+}
+
+.iban-code {
+    font-family: monospace; /* Monospace for easier code reading */
+    font-weight: 700;
+    color: var(--primary-dark);
+    font-size: 1.32rem; /* Matches the +20% body text increase */
+}
+
+/* =========================================
+   ACCOMMODATION & FOOTER
    ========================================= */
 
 .activity-card {
-    display: flex;
-    align-items: center;
-    background: var(--white);
-    margin-bottom: 20px;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: var(--shadow);
+    display: flex; 
+    align-items: center; 
+    background: var(--white); 
+    margin-bottom: 20px; 
+    border-radius: 8px; 
+    overflow: hidden; 
+    box-shadow: var(--shadow); 
 }
 
 .activity-card img {
     width: 140px; 
-    height: 140px;
-    object-fit: cover;
+    height: 140px; 
+    object-fit: cover; 
 }
 
 .activity-text { padding: 20px; text-align: left; }
-.activity-text h4 { margin: 0 0 10px 0; color: var(--primary); }
 
 footer {
-    padding: 40px 20px;
-    text-align: center;
-    background: var(--primary);
-    color: white;
-    font-family: 'Nexa', sans-serif;
-    font-weight: 700;
+    padding: 40px 20px; 
+    text-align: center; 
+    background: var(--primary); 
+    color: white; 
+    font-family: 'Nexa', sans-serif; 
+    font-weight: 700; 
 }
 
 /* =========================================
-   MOBILE RESPONSIVENESS (600px and below)
+   MOBILE RESPONSIVENESS (MAX 600PX)
    ========================================= */
 
 @media (max-width: 600px) {
-    .hero h1 { font-size: 2.5rem; }
-
-    /* MODIFICATION 2: Horizontal spacing reduced, vertical preserved, grid centered */
+    .hero h1 { font-size: 2.5rem; } 
+    
+    /* MODIFICATION: Game centering and reduced horizontal gap */
     .card-grid { 
-        grid-template-columns: repeat(3, 100px); 
-        column-gap: 2px; /* Reduced horizontal gap specifically */
-        row-gap: 5px;    /* Kept vertical gap as requested */
-        justify-content: center; /* Ensures grid stays centered */
+        grid-template-columns: repeat(3, 100px); /* Smaller cards on mobile */
+        column-gap: 2px; /* Tight horizontal gap */
+        row-gap: 5px; /* Standard vertical gap */
+        justify-content: center; /* Center grid */
     }
     .flip-card { width: 100px; height: 100px; }
 
-    /* MODIFICATION 1: IBAN Mobile adjustments */
-    .contribution-info {
-        padding: 15px 10px; /* Tighter padding for mobile */
+    /* MODIFICATION: Force single lines for IBAN details on small screens */
+    .iban-name {
+        white-space: nowrap; /* Forces name to stay on one line */
+        font-size: 1rem; /* Slightly smaller to fit width if necessary */
+    }
+    
+    .iban-code {
+        white-space: nowrap; /* Forces code to stay on one line */
+        font-size: 0.85rem; /* Shrinks code just enough to fit a standard mobile screen */
+        display: block;
     }
 
-    /* Target the name "Moreno Andrea Palmieri" and the IBAN code specifically */
-    .contribution-info p, .iban {
-        font-size: 0.95rem; /* Reduced size to fit width */
-        white-space: nowrap; /* Forces text to stay on one line */
-        display: block; /* Ensures they stack vertically */
-        overflow: hidden; /* Safety for very small screens */
-        text-overflow: ellipsis; 
-    }
-
-    .iban {
-        margin-top: 5px;
-        font-weight: 700;
-    }
-
-    .activity-card { flex-direction: column; }
-    .activity-card img { width: 100%; height: 200px; }
+    .activity-card { flex-direction: column; } 
+    .activity-card img { width: 100%; height: 200px; } 
 }
