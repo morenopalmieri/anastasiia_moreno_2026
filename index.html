@@ -74,39 +74,34 @@
         </section>
 
         <section id="honeymoon" class="section-container">
-            <h2>The Honeymoon</h2>
-            <div class="honeymoon-intro">
-                <p>Flip all the cards to discover our honeymoon destination!</p>
-            </div>
-            
-            <div class="card-grid">
-                <script>
-                    // 3. Improve flipcard game: Front = 1.jpg to 9.jpg | Back = 1B.jpg to 9B.jpg
-                    for(let i=1; i<=9; i++) {
-                        document.write(`
-                            <div class="flip-card" onclick="flipCard(this)">
-                                <div class="flip-card-inner">
-                                    <div class="flip-card-front" style="background-image: url('assets/${i}.jpg');"></div>
-                                    <div class="flip-card-back" style="background-image: url('assets/${i}B.jpg');"></div>
-                                </div>
-                            </div>
-                        `);
-                    }
-                </script>
-            </div>
-
-                        <div class="contribution-info">
-			<p class="iban-intro">If you wish to contribute to our dream trip, you can do so here:</p>
+    <h2>The Honeymoon</h2>
+    <div class="honeymoon-intro">
+        <p>Flip all the cards to discover our honeymoon destination!</p>
+    </div>
     
-			<div class="iban-container">
-			<div class="iban-name">Moreno Andrea Palmieri</div>
-        
-				<div class="iban-label">IBAN:</div>
-        
-			<div class="iban-code">IT34H0301503200000005977981</div>
-			</div>
-		
-        </section>
+    <div class="card-grid">
+        <script>
+            for(let i=1; i<=9; i++) {
+                document.write(`
+                    <div class="flip-card" onclick="flipCard(this)">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front" style="background-image: url('assets/${i}.jpg');"></div>
+                            <div class="flip-card-back" style="background-image: url('assets/${i}B.jpg');"></div>
+                        </div>
+                    </div>
+                `);
+            }
+        </script>
+    </div>
+
+    <div class="contribution-info">
+        <p class="iban-intro">If you wish to contribute to our dream trip, you can do so here:</p>
+        <div class="iban-container">
+            <div class="iban-name">Moreno Andrea Palmieri</div>
+            <div class="iban-label">IBAN:</div>
+            <div class="iban-code">IT34H0301503200000005977981</div>
+        </div>
+    </div> </section>
 
         <section id="venue-bus" class="section-container">
             <h2>Getting to the Venue</h2>

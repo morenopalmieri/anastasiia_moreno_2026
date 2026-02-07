@@ -129,6 +129,7 @@ h1, h2, h3 {
     margin-bottom: 7px; /* Space below icon */
 }
 
+
 /* =========================================
    FORMS (RSVP & BUS)
    ========================================= */
@@ -140,6 +141,17 @@ form {
     box-shadow: var(--shadow); 
     margin-top: 20px; 
     text-align: left; 
+}
+
+/* RESTORED: Input box styling to fix the "shape" issue */
+input, select { 
+    width: 100%; 
+    padding: 12px; 
+    border: 1px solid #ddd; 
+    border-radius: 4px; 
+    font-family: 'Nexa', sans-serif;
+    font-weight: 300; 
+    box-sizing: border-box; 
 }
 
 .form-group { 
@@ -156,7 +168,7 @@ form {
 
 .form-group label {
     font-weight: 700; 
-    font-size: 1.1rem; /* Increased 20% from 0.9rem */
+    font-size: 1.1rem; 
     color: var(--primary); 
 }
 
@@ -166,12 +178,37 @@ form {
     background-color: var(--primary); 
     color: white; 
     border: none; 
-    font-size: 1.32rem; /* Increased 20% from 1.1rem */
+    font-size: 1.32rem; 
     cursor: pointer; 
+    margin-top: 20px; /* Restored margin */
     border-radius: 4px;
+    transition: background 0.3s; /* Restored smooth hover */
     font-family: 'Nexa', sans-serif;
     font-weight: 700;
 }
+
+.submit-btn:hover { background-color: var(--primary-dark); }
+
+/* RESTORED: Secondary Button properties (Add another person) */
+.secondary-btn { 
+    background: none; 
+    border: 1px solid var(--primary); 
+    color: var(--primary); 
+    padding: 10px 20px; 
+    cursor: pointer; 
+    display: block; 
+    margin: 20px auto; 
+    border-radius: 4px;
+    transition: 0.3s; /* Restored transition */
+    font-family: 'Nexa', sans-serif;
+    font-weight: 700;
+}
+
+.secondary-btn:hover {
+    background: var(--primary);
+    color: white;
+}
+
 
 /* =========================================
    FLIPBOARD GAME (HONEYMOON)
