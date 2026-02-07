@@ -72,7 +72,7 @@ h1, h2, h3 {
 }
 
 .hero h1 { 
-    font-size: 4rem; /* Main Hero title size (kept original as requested) */
+    font-size: 4.5rem; /* Main Hero title size (kept original as requested) */
     margin-bottom: 10px; /* Space below title */
 }
 
@@ -225,16 +225,16 @@ input, select {
 
 .card-grid {
     display: grid; /* Enable CSS Grid */
-    grid-template-columns: repeat(3, 120px); /* 3 columns of 120px */
-    grid-gap: 7.5px; /* Space between cards */
+    grid-template-columns: repeat(3, 150px); /* 3 columns of 120px */
+    grid-gap: 5px; /* Space between cards */
     justify-content: center; /* Center cards horizontally */
     margin: 30px auto; /* Vertical margin */
 }
 
 .flip-card {
     background-color: transparent; /* Transparent container */
-    width: 120px; /* Card width */
-    height: 120px; /* Card height */
+    width: 150px; /* Card width */
+    height: 150px; /* Card height */
     perspective: 1000px; /* Depth effect for flip */
     cursor: pointer; /* Clickable cursor */
 }
@@ -393,7 +393,7 @@ footer {
     .hero h1 { font-size: 2.5rem; } /* Smaller title for mobile phones */
     
     .card-grid { 
-        grid-template-columns: repeat(3, 120px); /* Maintain 3 columns */
+        grid-template-columns: repeat(3, 100px); /* Maintain 3 columns */
         grid-gap: 5px; /* Tighter gap for mobile */
     }
     .flip-card { width: 100px; height: 100px; } /* Slightly smaller cards for mobile */
