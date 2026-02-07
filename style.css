@@ -20,7 +20,7 @@
 @font-face {
     font-family: 'Nexa';
     src: url('assets/nexa-script-thin.ttf') format('truetype'); /* Path to Thin font */
-    font-weight: 100; /* Identifies this as 'Thin' */
+    font-weight: 150; /* Identifies this as 'Thin' */
     font-style: normal;
 }
 
@@ -41,7 +41,7 @@ body {
     font-weight: 300; /* Uses the 'Light' weight by default */
     background-color: var(--bg); /* Page background color */
     color: var(--text); /* Default text color */
-    line-height: 1.6; /* Vertical space between lines of text */
+    line-height: 1.5; /* Vertical space between lines of text */
 }
 
 /* CHANGE HEADLINES FONT SIZE HERE */
@@ -390,7 +390,7 @@ footer {
     
     /* MOBILE GAME SIZE: Controls card size on phones */
     .card-grid { 
-        grid-template-columns: repeat(3, 100px); /* 100px cards on mobile */
+        grid-template-columns: repeat(3, 120px); /* 100px cards on mobile */
         grid-gap: 5px; 
     }
-    .flip-card { width: 100
+    .flip-card { width: 120
