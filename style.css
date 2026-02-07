@@ -118,14 +118,14 @@ h1, h2, h3 {
 }
 
 .info-card { 
-    margin: 20px 0; /* Space between info blocks */
+    margin: 15px 0; /* Space between info blocks */
 }
 
 /* CHANGE ICON SIZE/COLOR HERE */
 .info-card i { 
     font-size: 3rem; /* Size of the icons */
     color: var(--primary); /* Olive color for icons */
-    margin-bottom: 10px; /* Space below icon */
+    margin-bottom: 7px; /* Space below icon */
 }
 
 .map-link { 
@@ -220,7 +220,7 @@ input, select {
 .card-grid {
     display: grid;
     /* SIZE OF THE GRID: 150px is the width of each card */
-    grid-template-columns: repeat(3, 150px); 
+    grid-template-columns: repeat(3, 120px); 
     /* SPACE BETWEEN CARDS */
     grid-gap: 7.5px;
     justify-content: center; /* Centers the whole grid */
@@ -230,8 +230,8 @@ input, select {
 .flip-card {
     background-color: transparent;
     /* SIZE OF THE CARDS: Change both for bigger/smaller cards */
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
     perspective: 1000px; /* Gives 3D depth to the flip */
     cursor: pointer;
 }
