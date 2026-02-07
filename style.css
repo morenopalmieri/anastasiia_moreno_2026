@@ -1,132 +1,181 @@
-﻿/* General Setup */
+/* =========================================
+   GENERAL SETUP & VARIABLES
+   ========================================= */
+
 /* 1. Integrate Nexa Fonts from assets folder */
 @font-face {
-    font-family: 'Nexa';
-    src: url('assets/nexa-script-heavy.ttf') format('truetype');
-    font-weight: 700;
+    font-family: 'Nexa'; /* Name you'll use in the CSS */
+    src: url('assets/nexa-script-heavy.ttf') format('truetype'); /* Path to Bold font */
+    font-weight: 700; /* Identifies this as 'Bold' */
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Nexa';
-    src: url('assets/nexa-script-light.ttf') format('truetype');
-    font-weight: 300;
+    src: url('assets/nexa-script-light.ttf') format('truetype'); /* Path to Regular font */
+    font-weight: 300; /* Identifies this as 'Light' */
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Nexa';
-    src: url('assets/nexa-script-thin.ttf') format('truetype');
-    font-weight: 100;
+    src: url('assets/nexa-script-thin.ttf') format('truetype'); /* Path to Thin font */
+    font-weight: 100; /* Identifies this as 'Thin' */
     font-style: normal;
 }
 
+/* Global Variables - CHANGE COLOURS HERE */
 :root {
-    --primary: #5e6b54; /* Olive Green */
-    --primary-dark: #4a5542;
-    --secondary: #d4af37; /* Gold */
-    --bg: #f9f9f9;
-    --text: #333;
-    --white: #ffffff;
-    --shadow: 0 4px 15px rgba(0,0,0,0.05);
+    --primary: #04016f; /* Main blu */
+    --primary-dark: #030145; /* Darker blu for hover effects */
+    --secondary: #ccae45; /* Gold accent color */
+    --bg: #f9f9f9; /* Light grey background for the page */
+    --text: #333; /* Dark grey for readable text */
+    --white: #ffffff; /* Pure white */
+	--blu: #04016f; /* blu writing */
+    --shadow: 0 4px 15px rgba(0,0,0,0.05); /* Soft shadow for cards/forms */
 }
 
 body { 
-    margin: 0; 
-    font-family: 'Nexa', sans-serif; /* Default to Nexa Light/Regular */
-    font-weight: 300; 
-    background-color: var(--bg); 
-    color: var(--text); 
-    line-height: 1.6;
+    margin: 0; /* Removes default browser margin */
+    font-family: 'Nexa', sans-serif; /* Sets global font */
+    font-weight: 300; /* Uses the 'Light' weight by default */
+    background-color: var(--bg); /* Page background color */
+    color: var(--text); /* Default text color */
+    line-height: 1.6; /* Vertical space between lines of text */
 }
 
-/* Use Nexa Heavy for headings */
+/* CHANGE HEADLINES FONT SIZE HERE */
 h1, h2, h3 { 
     font-family: 'Nexa', sans-serif; 
-    font-weight: 700; 
+    font-weight: 700; /* Uses 'Heavy' weight */
 }
 
-/* Hero Section */
+/* =========================================
+   HERO SECTION (TOP IMAGE)
+   ========================================= */
+
 .hero {
-    height: 80vh;
-    /* 2. Fix background photo */
-    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('assets/Background.jpg');
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
+    height: 80vh; /* Hero height is 80% of the screen height */
+    /* ADJUST OPACITY HERE: Change '0.3' to '0.1' for a brighter image or '0.5' for darker */
+    background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('assets/Background.jpg');
+    background-size: cover; /* Image fills the container */
+    background-position: center; /* Image stays centered */
+    display: flex; /* Enables alignment tools */
+    align-items: center; /* Centers content vertically */
+    justify-content: center; /* Centers content horizontally */
+    text-align: center; /* Centers text */
+    color: blu; /* Text color on top of image */
 }
 
-.hero h1 { font-size: 3.5rem; margin-bottom: 10px; }
-.subtitle { font-size: 1.5rem; letter-spacing: 1px; }
-.divider { font-size: 2rem; color: var(--secondary); margin: 20px 0; }
+.hero h1 { 
+    font-size: 4rem; /* Font size of main title */
+    margin-bottom: 10px; /* Space below title */
+}
+
+.subtitle { 
+    font-size: 2rem; /* Font size of date/location */
+    letter-spacing: 1px; /* Horizontal space between letters */
+}
+
+.divider { 
+    font-size: 2rem; /* Size of the divider icon/text */
+    color: var(--secondary); /* Uses gold color */
+    margin: 20px 0; /* Space above and below the divider */
+}
+
 .cta-button { 
-    padding: 15px 30px; 
-    background: white; 
-    color: var(--text); 
-    text-decoration: none; 
-    text-transform: none; 
-    letter-spacing: 1px; 
-    transition: 0.3s; 
-    border-radius: 4px; 
+    padding: 15px 30px; /* Space inside the button */
+    background: blu; /* Button color */
+    color: white; /* Button text color */
+    text-decoration: none; /* Removes underline from link */
+    text-transform: none; /* Keeps text case as written */
+    letter-spacing: 1px; /* Spacing between letters */
+    transition: 0.3s; /* Smooth color change on hover */
+    border-radius: 4px; /* Slightly rounded corners */
     font-family: 'Nexa', sans-serif;
     font-weight: 700;
 }
-.cta-button:hover { background: var(--secondary); color: white; }
 
-/* Section Containers */
+.cta-button:hover { 
+    background: var(--secondary); /* Changes to gold on hover */
+    color: var(--primary-dark); /* Changes text to darker blu on hover */
+}
+
+/* =========================================
+   SECTION CONTAINERS (SPACING)
+   ========================================= */
+
 .container, .section-container { 
-    max-width: 800px; 
-    margin: 0 auto; 
+    max-width: 800px; /* Limits content width for readability */
+    margin: 0 auto; /* Centers the container on the screen */
+    /* ADJUST SPACING BETWEEN SECTIONS HERE: Change 60px to more or less */
     padding: 60px 20px; 
     text-align: center; 
 }
 
-.info-section { background: var(--white); }
-.info-card { margin: 20px 0; }
-.info-card i { font-size: 2rem; color: var(--primary); margin-bottom: 10px; }
-.map-link { color: var(--primary); text-decoration: underline; font-weight: bold; }
+.info-section { 
+    background: var(--white); /* White background for specific sections */
+}
 
-/* Shared Form Styles (RSVP & Bus) */
+.info-card { 
+    margin: 20px 0; /* Space between info blocks */
+}
+
+/* CHANGE ICON SIZE/COLOR HERE */
+.info-card i { 
+    font-size: 3rem; /* Size of the icons */
+    color: var(--primary); /* Olive color for icons */
+    margin-bottom: 10px; /* Space below icon */
+}
+
+.map-link { 
+    color: var(--primary); 
+    text-decoration: underline; 
+    font-weight: bold; 
+}
+
+/* =========================================
+   FORMS (RSVP & BUS)
+   ========================================= */
+
 form { 
     background: var(--white); 
     padding: 30px; 
     border-radius: 8px; 
     box-shadow: var(--shadow); 
     margin-top: 20px; 
-    text-align: left;
+    text-align: left; /* Aligns labels to the left */
 }
 
 .form-group { 
     display: flex; 
     flex-direction: column; 
-    gap: 5px; 
-    margin-bottom: 15px; 
+    gap: 5px; /* Space between label and input */
+    margin-bottom: 15px; /* Space between input fields */
 }
 
+/* Desktop Form Layout (Side by side) */
 @media (min-width: 600px) {
     .form-group { flex-direction: row; gap: 10px; }
-    .form-group > * { flex: 1; }
+    .form-group > * { flex: 1; } /* Makes inputs equal width */
 }
 
 .form-group label {
-    font-weight: 700;
-    font-size: 0.9rem;
-    color: var(--primary);
+    font-weight: 700; 
+    font-size: 0.9rem; /* Small font for labels */
+    color: var(--primary); 
     margin-bottom: 2px;
 }
 
 input, select { 
     width: 100%; 
     padding: 12px; 
-    border: 1px solid #ddd; 
+    border: 1px solid #ddd; /* Light grey border */
     border-radius: 4px; 
     font-family: 'Nexa', sans-serif;
     font-weight: 300; 
-    box-sizing: border-box;
+    box-sizing: border-box; /* Ensures padding doesn't break width */
 }
 
 .submit-btn { 
@@ -165,23 +214,26 @@ input, select {
     color: white;
 }
 
-/* 3. Improve Honeymoon Flip Cards */
+/* =========================================
+   FLIPBOARD GAME (HONEYMOON)
+   ========================================= */
+
 .card-grid {
     display: grid;
-    /* Increased size 100px -> 120px */
-    grid-template-columns: repeat(3, 120px);
-    /* Reduced gap 15px -> 7.5px */
+    /* SIZE OF THE GRID: 150px is the width of each card */
+    grid-template-columns: repeat(3, 120px); 
+    /* SPACE BETWEEN CARDS */
     grid-gap: 7.5px;
-    justify-content: center;
-    margin: 30px auto;
+    justify-content: center; /* Centers the whole grid */
+    margin: 30px auto; 
 }
 
 .flip-card {
     background-color: transparent;
-    /* Increased size 100px -> 120px */
-    width: 120px;
-    height: 120px;
-    perspective: 1000px;
+    /* SIZE OF THE CARDS: Change both for bigger/smaller cards */
+    width: 150px;
+    height: 150px;
+    perspective: 1000px; /* Gives 3D depth to the flip */
     cursor: pointer;
 }
 
@@ -190,33 +242,32 @@ input, select {
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: transform 0.6s;
+    transition: transform 0.6s; /* Speed of the flip animation */
     transform-style: preserve-3d;
 }
 
+/* Trigger for the flip action */
 .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
 
 .flip-card-front, .flip-card-back {
     position: absolute;
     width: 100%;
     height: 100%;
-    -webkit-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden; /* Hides back side when looking at front */
     backface-visibility: hidden;
     border-radius: 8px;
-    /* Removed flex centering and borders to let images fill completely */
-    background-size: cover;
+    background-size: cover; 
     background-position: center;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 .flip-card-front {
-    background-color: #f8f9fa; /* Fallback */
-    /* Removed text styling as we now use images */
+    background-color: #f8f9fa; /* Color if image fails to load */
 }
 
 .flip-card-back {
-    background-color: #fff; /* Fallback */
-    transform: rotateY(180deg);
+    background-color: #fff; 
+    transform: rotateY(180deg); /* Positioned behind the front */
 }
 
 .contribution-info {
@@ -228,13 +279,16 @@ input, select {
 }
 
 .iban {
-    font-family: monospace;
+    font-family: monospace; /* Fixed-width font for easier reading of numbers */
     font-size: 1.1em;
     color: var(--primary-dark);
-    word-break: break-all;
+    word-break: break-all; /* Prevents long numbers from breaking layout on mobile */
 }
 
-/* Bus Service Styling */
+/* =========================================
+   LISTS & ACCOMMODATION
+   ========================================= */
+
 .pickup-points {
     list-style: none;
     padding: 0;
@@ -250,16 +304,15 @@ input, select {
     box-shadow: 2px 2px 5px rgba(0,0,0,0.02);
 }
 
-/* Accommodation & Things to Do */
 .accommodation-lists {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Allows columns to drop down on mobile */
     justify-content: space-between;
     margin-bottom: 40px;
 }
 
 .town-list {
-    flex: 1;
+    flex: 1; /* Both columns take equal width */
     min-width: 300px;
     margin: 10px;
     text-align: left;
@@ -268,7 +321,7 @@ input, select {
 .town-list ul { list-style: none; padding: 0; }
 .town-list li {
     margin-bottom: 20px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #eee; /* Light divider line between hotels */
     padding-bottom: 10px;
 }
 
@@ -282,25 +335,28 @@ input, select {
 
 .activity-card {
     display: flex;
-    align-items: center;
+    align-items: center; /* Vertically aligns image and text */
     background: var(--white);
     margin-bottom: 20px;
     border-radius: 8px;
-    overflow: hidden;
+    overflow: hidden; /* Clips image to the border-radius */
     box-shadow: var(--shadow);
     text-align: left;
 }
 
 .activity-card img {
-    width: 140px;
+    width: 140px; /* Fixed width for the activity photo */
     height: 140px;
-    object-fit: cover;
+    object-fit: cover; /* Prevents image distortion */
 }
 
 .activity-text { padding: 20px; }
 .activity-text h4 { margin: 0 0 10px 0; color: var(--primary); }
 
-/* Footer */
+/* =========================================
+   FOOTER
+   ========================================= */
+
 footer {
     padding: 40px 20px;
     text-align: center;
@@ -310,28 +366,32 @@ footer {
     font-weight: 700;
 }
 
-/* Animations */
+/* =========================================
+   ANIMATIONS
+   ========================================= */
+
 .guest-entry { 
     border-top: 1px dashed #ccc; 
     padding-top: 15px; 
     margin-top: 15px; 
-    animation: fadeIn 0.5s ease-in; 
+    animation: fadeIn 0.5s ease-in; /* Triggers the fade animation */
 }
 
-@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { 
+    from { opacity: 0; transform: translateY(10px); } /* Start invisible & lower */
+    to { opacity: 1; transform: translateY(0); } /* End visible & at position */
+}
 
-/* Mobile Adjustments */
+/* =========================================
+   MOBILE RESPONSIVENESS
+   ========================================= */
+
 @media (max-width: 600px) {
-    .hero h1 { font-size: 2.5rem; }
-    /* Adjusted for new card size 120px + gap 7.5px. 3 columns might be tight on small screens, so auto-fit logic or small scaling is safer */
-    .card-grid { grid-template-columns: repeat(3, 100px); grid-gap: 5px; } /* Slightly smaller for mobile if 120px is too wide */
-    .flip-card { width: 100px; height: 100px; }
+    .hero h1 { font-size: 2.5rem; } /* Shrinks title on mobile */
     
-    .activity-card { flex-direction: column; }
-    .activity-card img { width: 100%; height: 200px; }
-
-}
-
-
-
-
+    /* MOBILE GAME SIZE: Controls card size on phones */
+    .card-grid { 
+        grid-template-columns: repeat(3, 100px); /* 100px cards on mobile */
+        grid-gap: 5px; 
+    }
+    .flip-card { width: 100
