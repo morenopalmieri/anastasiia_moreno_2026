@@ -355,3 +355,54 @@ footer {
     .activity-card { flex-direction: column; } 
     .activity-card img { width: 100%; height: 200px; } 
 }
+
+/* --- LANGUAGE SWITCHER STYLES --- */
+.hero {
+    position: relative; /* Anchor for the absolute flags */
+    height: 80vh;
+    background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('assets/Background.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--primary);
+}
+
+.language-switcher {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    display: flex;
+    gap: 12px;
+    z-index: 1000;
+}
+
+.flag-btn {
+    width: 40px;      /* Fixed width */
+    height: 27px;     /* Fixed height matching Italian flag aspect ratio */
+    object-fit: cover; /* Prevents distortion */
+    cursor: pointer;
+    border-radius: 3px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    border: 1.5px solid white;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.flag-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+@media (max-width: 600px) {
+    .language-switcher {
+        top: 15px;
+        right: 15px;
+        gap: 8px;
+    }
+    .flag-btn {
+        width: 35px;
+        height: 23px;
+    }
+}

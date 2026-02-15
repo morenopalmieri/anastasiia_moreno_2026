@@ -2,7 +2,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
 import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 
-// Firebase Config
+// --- 1. FIREBASE CONFIGURATION (ORIGINAL) ---
 const firebaseConfig = {
     apiKey: "AIzaSyC1tfxGaRFLvlfeWSTXqpIQV_a1CmOakhQ",
     authDomain: "wedding-rsvp-19062026.firebaseapp.com",
@@ -17,23 +17,45 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// --- GLOBAL HELPERS ---
-// We attach this to 'window' so the HTML onclick="flipCard(this)" can find it
+// --- 2. GLOBAL HELPERS (ORIGINAL) ---
 window.flipCard = function(cardElement) {
     cardElement.classList.toggle('flipped');
 };
 
-// --- DOM LOGIC ---
+// --- 3. LANGUAGE SWITCHER LOGIC (NEW INTEGRATION) ---
+window.setLanguage = function(lang) {
+    document.querySelectorAll(`[data-${lang}]`).forEach(el => {
+        // Handle input placeholders
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+            el.placeholder = el.getAttribute(`data-${lang}`);
+        } 
+        // Handle select options
+        else if (el.tagName === 'OPTION') {
+            el.text = el.getAttribute(`data-${lang}`);
+        } 
+        // Handle standard text elements
+        else {
+            el.innerHTML = el.getAttribute(`data-${lang}`);
+        }
+    });
+    // Save preference so it persists on refresh
+    localStorage.setItem('weddingLang', lang);
+};
+
+// --- 4. DOM LOGIC ---
 document.addEventListener('DOMContentLoaded', () => {
 
+    // Initialize language from storage or default to English
+    const savedLang = localStorage.getItem('weddingLang') || 'en';
+    setLanguage(savedLang);
+
     // ==========================================
-    // 1. MAIN WEDDING RSVP FORM LOGIC
+    // A. MAIN WEDDING RSVP FORM LOGIC (ORIGINAL)
     // ==========================================
-    const rsvpAddGuestBtn = document.getElementById('addGuestBtn'); // The button in your main RSVP form
+    const rsvpAddGuestBtn = document.getElementById('addGuestBtn');
     const rsvpExtraGuestsContainer = document.getElementById('extraGuestsContainer');
     let rsvpGuestCount = 0;
 
-    // Add Extra Guest Fields (RSVP)
     if (rsvpAddGuestBtn && rsvpExtraGuestsContainer) {
         rsvpAddGuestBtn.addEventListener('click', () => {
             if (rsvpGuestCount >= 4) {
@@ -44,11 +66,12 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const div = document.createElement('div');
             div.classList.add('guest-entry');
+            // Integrated translation attributes into the dynamic HTML
             div.innerHTML = `
                 <h4 data-en="Guest ${rsvpGuestCount}" data-it="Ospite ${rsvpGuestCount}">Guest ${rsvpGuestCount}</h4>
                 <div class="form-group">
-                    <input type="text" class="guest-name" placeholder="Name" required data-en="Name" data-it="Nome">
-                    <input type="text" class="guest-surname" placeholder="Surname" required data-en="Surname" data-it="Cognome">
+                    <input type="text" class="guest-name" placeholder="Name" data-en="Name" data-it="Nome" required>
+                    <input type="text" class="guest-surname" placeholder="Surname" data-en="Surname" data-it="Cognome" required>
                 </div>
                 <div class="form-group">
                     <select class="guest-diet">
@@ -62,23 +85,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 <input type="text" class="guest-details" placeholder="Allergies / Details" data-en="Allergies / Details" data-it="Allergie / Dettagli">
             `;
             rsvpExtraGuestsContainer.appendChild(div);
-
-            // Re-apply language translations to newly generated fields
+            
+            // Re-run language check to translate the newly added guest fields
             setLanguage(localStorage.getItem('weddingLang') || 'en');
         });
     }
 
-    // Handle RSVP Submit
     const weddingForm = document.getElementById('weddingForm');
     if (weddingForm) {
         weddingForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
             const submitBtn = weddingForm.querySelector('.submit-btn');
+            const originalBtnText = submitBtn.textContent;
             submitBtn.textContent = "Sending...";
             submitBtn.disabled = true;
 
-            // Collect Main Guest Data
             const mainGuest = {
                 name: document.getElementById('mainName').value,
                 surname: document.getElementById('mainSurname').value,
@@ -88,7 +110,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 type: 'Main'
             };
 
-            // Collect Extra Guests Data
             const extraGuestsDivs = document.querySelectorAll('.guest-entry');
             let allGuests = [mainGuest];
 
@@ -105,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             try {
-                // Save to Firebase (v9 syntax)
+                // Save to Firebase (ORIGINAL)
                 await addDoc(collection(db, "rsvps"), {
                     mainContact: mainGuest.name + ' ' + mainGuest.surname,
                     email: mainGuest.email,
@@ -113,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     timestamp: new Date()
                 });
 
-                // Send Email via EmailJS (Ensure window.emailjs is available)
+                // EmailJS Integration (ORIGINAL)
                 if (window.emailjs) {
                     const emailParams = {
                         to_email: mainGuest.email,
@@ -129,57 +150,49 @@ document.addEventListener('DOMContentLoaded', () => {
             } catch (error) {
                 console.error("Error adding document: ", error);
                 alert("Something went wrong. Please try again.");
-                submitBtn.textContent = "Join the Party";
+                submitBtn.textContent = originalBtnText;
                 submitBtn.disabled = false;
             }
         });
     }
 
     // ==========================================
-    // 2. BUS RESERVATION FORM LOGIC
+    // B. BUS RESERVATION FORM LOGIC (ORIGINAL)
     // ==========================================
-    
-    // Note: I renamed these IDs to avoid conflict with the RSVP form.
-    // YOU MUST UPDATE YOUR HTML TO MATCH THESE IDS (See Step 2 below)
     const busAddGuestBtn = document.getElementById('busAddGuestBtn'); 
     const busGuestsContainer = document.getElementById('busGuestsContainer');
     let busGuestCount = 0;
-    const MAX_BUS_GUESTS = 4;
 
     if(busAddGuestBtn && busGuestsContainer) {
         busAddGuestBtn.addEventListener('click', () => {
-            if (busGuestCount < MAX_BUS_GUESTS) {
+            if (busGuestCount < 4) {
                 busGuestCount++;
                 const div = document.createElement('div');
                 div.classList.add('form-group');
+                // Integrated translation attributes
                 div.innerHTML = `
                     <label data-en="Guest ${busGuestCount} Name" data-it="Nome Ospite ${busGuestCount}">Guest ${busGuestCount} Name</label>
                     <input type="text" name="guest${busGuestCount}_name" placeholder="Name" data-en="Name" data-it="Nome">
-                    <input type="text" name="guest${busGuestCount}_surname" placeholder="Surname" style="margin-top:5px;" data-en="Surname" data-it="Cognome">
+                    <input type="text" name="guest${busGuestCount}_surname" placeholder="Surname" data-en="Surname" data-it="Cognome" style="margin-top:5px;">
                 `;
                 busGuestsContainer.appendChild(div);
                 
-                // Re-apply language translations to newly generated fields
+                // Translate the new labels/placeholders
                 setLanguage(localStorage.getItem('weddingLang') || 'en');
 
-                if (busGuestCount === MAX_BUS_GUESTS) {
+                if (busGuestCount === 4) {
                     busAddGuestBtn.style.display = 'none';
                 }
             }
         });
     }
 
-    // Handle Bus Form Submission
     const busForm = document.getElementById('busForm');
     if(busForm) {
         busForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             
-            // Gather data
             const formData = new FormData(busForm);
-            const mainName = formData.get('name');
-            const mainSurname = formData.get('surname');
-            
             const guests = [];
             for (let i = 1; i <= busGuestCount; i++) {
                 const gName = formData.get(`guest${i}_name`);
@@ -190,57 +203,23 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const reservationData = {
-                mainGuest: { name: mainName, surname: mainSurname },
+                mainGuest: { name: formData.get('name'), surname: formData.get('surname') },
                 additionalGuests: guests,
                 totalSeats: 1 + guests.length,
                 timestamp: new Date()
             };
 
             try {
-                // Save to Firebase (Corrected v9 syntax)
                 await addDoc(collection(db, "bus_reservations"), reservationData);
-                
                 alert("Bus reservation sent successfully!");
                 busForm.reset();
                 busGuestsContainer.innerHTML = '';
                 busGuestCount = 0;
                 busAddGuestBtn.style.display = 'inline-block';
-
             } catch (error) {
                 console.error("Error adding bus reservation: ", error);
-                alert("Error sending reservation. Please try again.");
+                alert("Error sending reservation.");
             }
         });
     }
-});
-
-// ==========================================
-// 3. LANGUAGE SWITCHER LOGIC
-// ==========================================
-window.setLanguage = function(lang) {
-    // Find all elements that have a data attribute for the chosen language
-    document.querySelectorAll(`[data-${lang}]`).forEach(el => {
-        
-        // Handle input fields and textareas (changing placeholders)
-        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-            el.placeholder = el.getAttribute(`data-${lang}`);
-        } 
-        // Handle dropdown options
-        else if (el.tagName === 'OPTION') {
-            el.text = el.getAttribute(`data-${lang}`);
-        }
-        // Handle standard text
-        else {
-            el.innerHTML = el.getAttribute(`data-${lang}`);
-        }
-    });
-    
-    // Save the user's preference in their browser
-    localStorage.setItem('weddingLang', lang);
-};
-
-// Check if user already selected a language when the page loads
-document.addEventListener('DOMContentLoaded', () => {
-    const savedLang = localStorage.getItem('weddingLang') || 'en';
-    setLanguage(savedLang);
 });
