@@ -10,11 +10,16 @@
 <body>
 
     <header class="hero">
+        <div class="language-switcher">
+            <img src="https://flagcdn.com/w40/gb.png" alt="English" class="flag-btn" onclick="setLanguage('en')">
+            <img src="https://flagcdn.com/w40/it.png" alt="Italian" class="flag-btn" onclick="setLanguage('it')">
+        </div>
+
         <div class="hero-content">
             <h1>Anastasiia & Moreno</h1>
-            <p class="subtitle">We are getting married!</p>
+            <p class="subtitle" data-en="We are getting married!" data-it="Ci sposiamo!">We are getting married!</p>
             <div class="divider">❦</div>
-            <a href="#rsvp" class="cta-button">Join the Party</a>
+            <a href="#rsvp" class="cta-button" data-en="Join the Party" data-it="Unisciti alla Festa">Join the Party</a>
         </div>
     </header>
 
@@ -23,15 +28,15 @@
             <div class="container">
                 <div class="info-card">
                     <i class="far fa-calendar-alt"></i>
-                    <h3>When</h3>
-                    <p>June 19, 2026</p>
-                    <p>Ceremony starts at 17:00</p>
+                    <h3 data-en="When" data-it="Quando">When</h3>
+                    <p data-en="June 19, 2026" data-it="19 Giugno 2026">June 19, 2026</p>
+                    <p data-en="Ceremony starts at 17:00" data-it="La cerimonia inizia alle 17:00">Ceremony starts at 17:00</p>
                 </div>
                 <div class="info-card">
                     <i class="fas fa-map-marker-alt"></i>
-                    <h3>Where</h3>
+                    <h3 data-en="Where" data-it="Dove">Where</h3>
                     <p>Villa Bianca, Montegranaro (FM)</p>
-                    <a href="https://maps.app.goo.gl/YourVenueLink" target="_blank" class="map-link">View on Google Maps</a>
+                    <a href="https://maps.app.goo.gl/YourVenueLink" target="_blank" class="map-link" data-en="View on Google Maps" data-it="Vedi su Google Maps">View on Google Maps</a>
                 </div>
             </div>
         </section>
@@ -39,149 +44,150 @@
         <section id="rsvp" class="rsvp-section">
             <div class="container">
                 <h2>RSVP</h2>
-                <p>Please confirm your attendance by filling out the form below.</p>
+                <p data-en="Please confirm your attendance by filling out the form below." data-it="Conferma la tua presenza compilando il modulo sottostante.">Please confirm your attendance by filling out the form below.</p>
                 
                 <form id="weddingForm">
-                    <h3>Your Details</h3>
+                    <h3 data-en="Your Details" data-it="I Tuoi Dettagli">Your Details</h3>
                     <div class="form-group">
-                        <input type="text" id="mainName" placeholder="Name" required>
-                        <input type="text" id="mainSurname" placeholder="Surname" required>
+                        <input type="text" id="mainName" placeholder="Name" data-en="Name" data-it="Nome" required>
+                        <input type="text" id="mainSurname" placeholder="Surname" data-en="Surname" data-it="Cognome" required>
                     </div>
                     
                     <div class="form-group">
-                        <label for="mainDiet">Dietary Requirements:</label>
+                        <label for="mainDiet" data-en="Dietary Requirements:" data-it="Esigenze Alimentari:">Dietary Requirements:</label>
                         <select id="mainDiet">
-                            <option value="None">None</option>
-                            <option value="Vegetarian">Vegetarian</option>
-                            <option value="Vegan">Vegan</option>
-                            <option value="Gluten Free">Gluten Free</option>
-                            <option value="Other">Other (Specify below)</option>
+                            <option value="None" data-en="None" data-it="Nessuna">None</option>
+                            <option value="Vegetarian" data-en="Vegetarian" data-it="Vegetariano">Vegetarian</option>
+                            <option value="Vegan" data-en="Vegan" data-it="Vegano">Vegan</option>
+                            <option value="Gluten Free" data-en="Gluten Free" data-it="Senza Glutine">Gluten Free</option>
+                            <option value="Other" data-en="Other (Specify below)" data-it="Altro (Specifica sotto)">Other (Specify below)</option>
                         </select>
                     </div>
-                    <input type="text" id="mainDietDetails" placeholder="Details for 'Other' or Allergies">
+                    <input type="text" id="mainDietDetails" placeholder="Details for 'Other' or Allergies" data-en="Details for 'Other' or Allergies" data-it="Dettagli per 'Altro' o Allergie">
                     
                     <div class="form-group">
-                        <label for="mainEmail">Email for Confirmation:</label>
-                        <input type="email" id="mainEmail" placeholder="your@email.com" required>
+                        <label for="mainEmail" data-en="Email for Confirmation:" data-it="Email per Conferma:">Email for Confirmation:</label>
+                        <input type="email" id="mainEmail" placeholder="your@email.com" data-en="your@email.com" data-it="tua@email.com" required>
                     </div>
 
                     <div id="extraGuestsContainer"></div>
                     
-                    <button type="button" id="addGuestBtn" class="secondary-btn">+ Add a Guest (Max 4)</button>
-                    <button type="submit" class="submit-btn">Join the Party</button>
+                    <button type="button" id="addGuestBtn" class="secondary-btn" data-en="+ Add a Guest (Max 4)" data-it="+ Aggiungi un Ospite (Max 4)">+ Add a Guest (Max 4)</button>
+                    <button type="submit" class="submit-btn" data-en="Join the Party" data-it="Unisciti alla Festa">Join the Party</button>
                 </form>
             </div>
         </section>
 
         <section id="honeymoon" class="section-container">
-    <h2>The Honeymoon</h2>
-    <div class="honeymoon-intro">
-        <p>Flip all the cards to discover our honeymoon destination!</p>
-    </div>
-    
-    <div class="card-grid">
-        <script>
-            for(let i=1; i<=9; i++) {
-                document.write(`
-                    <div class="flip-card" onclick="flipCard(this)">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front" style="background-image: url('assets/${i}.jpg');"></div>
-                            <div class="flip-card-back" style="background-image: url('assets/${i}B.jpg');"></div>
-                        </div>
-                    </div>
-                `);
-            }
-        </script>
-    </div>
+            <h2 data-en="The Honeymoon" data-it="La Luna di Miele">The Honeymoon</h2>
+            <div class="honeymoon-intro">
+                <p data-en="Flip all the cards to discover our honeymoon destination!" data-it="Gira tutte le carte per scoprire la destinazione della nostra luna di miele!">Flip all the cards to discover our honeymoon destination!</p>
+            </div>
+            
+            <div class="card-grid">
+                <script>
+                    for(let i=1; i<=9; i++) {
+                        document.write(`
+                            <div class="flip-card" onclick="flipCard(this)">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front" style="background-image: url('assets/${i}.jpg');"></div>
+                                    <div class="flip-card-back" style="background-image: url('assets/${i}B.jpg');"></div>
+                                </div>
+                            </div>
+                        `);
+                    }
+                </script>
+            </div>
 
-    <div class="contribution-info">
-        <p class="iban-intro">If you wish to contribute to our dream trip, you can do so here:</p>
-        <div class="iban-container">
-            <div class="iban-name">Moreno Andrea Palmieri</div>
-            <div class="iban-label">IBAN:</div>
-            <div class="iban-code">IT34H0301503200000005977981</div>
-        </div>
-    </div> </section>
+            <div class="contribution-info">
+                <p class="iban-intro" data-en="If you wish to contribute to our dream trip, you can do so here:" data-it="Se desideri contribuire al viaggio dei nostri sogni, puoi farlo qui:">If you wish to contribute to our dream trip, you can do so here:</p>
+                <div class="iban-container">
+                    <div class="iban-name">Moreno Andrea Palmieri</div>
+                    <div class="iban-label">IBAN:</div>
+                    <div class="iban-code">IT34H0301503200000005977981</div>
+                </div>
+            </div> 
+        </section>
 
         <section id="venue-bus" class="section-container">
-            <h2>Getting to the Venue</h2>
+            <h2 data-en="Getting to the Venue" data-it="Come Arrivare">Getting to the Venue</h2>
             <div class="venue-link">
-                <p>Location: <a href="https://maps.app.goo.gl/YourVenueLink" target="_blank">View Villa Bianca on Maps</a></p>
+                <p><span data-en="Location: " data-it="Posizione: ">Location: </span><a href="https://maps.app.goo.gl/YourVenueLink" target="_blank" data-en="View Villa Bianca on Maps" data-it="Vedi Villa Bianca sulle Mappe">View Villa Bianca on Maps</a></p>
             </div>
 
             <div class="bus-service">
-                <h3>Bus Service</h3>
-                <p>We are organizing a bus service for our guests with two pickup points:</p>
+                <h3 data-en="Bus Service" data-it="Servizio Navetta">Bus Service</h3>
+                <p data-en="We are organizing a bus service for our guests with two pickup points:" data-it="Stiamo organizzando un servizio navetta per i nostri ospiti con due punti di raccolta:">We are organizing a bus service for our guests with two pickup points:</p>
                 <ul class="pickup-points">
                     <li>
-                        <strong>Recanati:</strong> Via Aldo Moro 23 (in front of Liceo Scientifico)
+                        <span data-en="<strong>Recanati:</strong> Via Aldo Moro 23 (in front of Liceo Scientifico)" data-it="<strong>Recanati:</strong> Via Aldo Moro 23 (davanti al Liceo Scientifico)"><strong>Recanati:</strong> Via Aldo Moro 23 (in front of Liceo Scientifico)</span>
                         <a href="https://maps.app.goo.gl/RecanatiLink" target="_blank" aria-label="Open Recanati pickup in Maps">📍</a>
                     </li>
                     <li>
-                        <strong>Porto Recanati:</strong> Parcheggio Nazario Sauro
+                        <span data-en="<strong>Porto Recanati:</strong> Parcheggio Nazario Sauro" data-it="<strong>Porto Recanati:</strong> Parcheggio Nazario Sauro"><strong>Porto Recanati:</strong> Parcheggio Nazario Sauro</span>
                         <a href="https://maps.app.goo.gl/PortoRecanatiLink" target="_blank" aria-label="Open Porto Recanati pickup in Maps">📍</a>
                     </li>
                 </ul>
             </div>
 
             <div class="bus-form-container">
-                <h3>Reserve a Seat on the Bus</h3>
+                <h3 data-en="Reserve a Seat on the Bus" data-it="Prenota un Posto sulla Navetta">Reserve a Seat on the Bus</h3>
                 <form id="busForm">
                     <div class="form-group">
-                        <label for="busMainName">Name</label>
-                        <input type="text" id="busMainName" name="name" required placeholder="Your Name">
+                        <label for="busMainName" data-en="Name" data-it="Nome">Name</label>
+                        <input type="text" id="busMainName" name="name" required placeholder="Your Name" data-en="Your Name" data-it="Il tuo Nome">
                     </div>
                     <div class="form-group">
-                        <label for="busMainSurname">Surname</label>
-                        <input type="text" id="busMainSurname" name="surname" required placeholder="Your Surname">
+                        <label for="busMainSurname" data-en="Surname" data-it="Cognome">Surname</label>
+                        <input type="text" id="busMainSurname" name="surname" required placeholder="Your Surname" data-en="Your Surname" data-it="Il tuo Cognome">
                     </div>
 
                     <div id="busGuestsContainer"></div>
 
-                    <button type="button" id="busAddGuestBtn" class="secondary-btn">+ Add another person (Max 4)</button>
+                    <button type="button" id="busAddGuestBtn" class="secondary-btn" data-en="+ Add another person (Max 4)" data-it="+ Aggiungi un'altra persona (Max 4)">+ Add another person (Max 4)</button>
                     <br><br>
-                    <button type="submit" class="submit-btn">Request Bus Seats</button>
+                    <button type="submit" class="submit-btn" data-en="Request Bus Seats" data-it="Richiedi Posti Navetta">Request Bus Seats</button>
                 </form>
             </div>
         </section>
 
         <section id="accommodation" class="section-container">
-            <h2>Accommodation & Things to Do</h2>
+            <h2 data-en="Accommodation & Things to Do" data-it="Alloggi e Cosa Fare">Accommodation & Things to Do</h2>
             
             <div class="accommodation-lists">
                 <div class="town-list">
-                    <h3>Top 3 Hotels in Recanati</h3>
+                    <h3 data-en="Top 3 Hotels in Recanati" data-it="I 3 Migliori Hotel a Recanati">Top 3 Hotels in Recanati</h3>
                     <ul>
-                        <li><strong>Gallery Hotel Recanati</strong> (4★) <a href="https://www.galleryhotelrecanati.com/" target="_blank">Visit</a></li>
-                        <li><strong>Hotel Palazzo Bello</strong> (3★) <a href="https://www.hotelpalazzobello.it/" target="_blank">Visit</a></li>
-                        <li><strong>B&B Porta Marina</strong> <a href="https://www.bbportamarina.it/" target="_blank">Visit</a></li>
+                        <li><strong>Gallery Hotel Recanati</strong> (4★) <a href="https://www.galleryhotelrecanati.com/" target="_blank" data-en="Visit" data-it="Visita">Visit</a></li>
+                        <li><strong>Hotel Palazzo Bello</strong> (3★) <a href="https://www.hotelpalazzobello.it/" target="_blank" data-en="Visit" data-it="Visita">Visit</a></li>
+                        <li><strong>B&B Porta Marina</strong> <a href="https://www.bbportamarina.it/" target="_blank" data-en="Visit" data-it="Visita">Visit</a></li>
                     </ul>
                 </div>
 
                 <div class="town-list">
-                    <h3>Top 3 Hotels in Porto Recanati</h3>
+                    <h3 data-en="Top 3 Hotels in Porto Recanati" data-it="I 3 Migliori Hotel a Porto Recanati">Top 3 Hotels in Porto Recanati</h3>
                     <ul>
-                        <li><strong>Life Hotel Seaview & Spa</strong> (4★) <a href="https://www.life-hotel.it/" target="_blank">Visit</a></li>
-                        <li><strong>Castello Svevo</strong> <a href="https://www.booking.com/hotel/it/castello-svevo-porto-recanati.html" target="_blank">Visit</a></li>
-                        <li><strong>Hotel Mondial</strong> (3★) <a href="https://www.hotelmondial.it/" target="_blank">Visit</a></li>
+                        <li><strong>Life Hotel Seaview & Spa</strong> (4★) <a href="https://www.life-hotel.it/" target="_blank" data-en="Visit" data-it="Visita">Visit</a></li>
+                        <li><strong>Castello Svevo</strong> <a href="https://www.booking.com/hotel/it/castello-svevo-porto-recanati.html" target="_blank" data-en="Visit" data-it="Visita">Visit</a></li>
+                        <li><strong>Hotel Mondial</strong> (3★) <a href="https://www.hotelmondial.it/" target="_blank" data-en="Visit" data-it="Visita">Visit</a></li>
                     </ul>
                 </div>
             </div>
 
             <div class="things-to-do">
-                <h3>Weekend Inspiration</h3>
+                <h3 data-en="Weekend Inspiration" data-it="Ispirazione per il Weekend">Weekend Inspiration</h3>
                 <div class="activity-card">
                     <img src="assets/recanati_leopardi.jpg" alt="Casa Leopardi"> 
                     <div class="activity-text">
-                        <h4>Recanati: Casa Leopardi</h4>
-                        <p>Visit the birthplace of Giacomo Leopardi. A walk through the library is a must-do cultural experience.</p>
+                        <h4 data-en="Recanati: Casa Leopardi" data-it="Recanati: Casa Leopardi">Recanati: Casa Leopardi</h4>
+                        <p data-en="Visit the birthplace of Giacomo Leopardi. A walk through the library is a must-do cultural experience." data-it="Visita la casa natale di Giacomo Leopardi. Una passeggiata attraverso la biblioteca è un'esperienza culturale imperdibile.">Visit the birthplace of Giacomo Leopardi. A walk through the library is a must-do cultural experience.</p>
                     </div>
                 </div>
                 <div class="activity-card">
                     <img src="assets/conero_beach.jpg" alt="Riviera del Conero"> 
                     <div class="activity-text">
-                        <h4>Riviera del Conero: Boat Trip</h4>
-                        <p>Take a boat to the "Due Sorelle" beach and enjoy the stunning view of Mount Conero.</p>
+                        <h4 data-en="Riviera del Conero: Boat Trip" data-it="Riviera del Conero: Gita in Barca">Riviera del Conero: Boat Trip</h4>
+                        <p data-en="Take a boat to the &quot;Due Sorelle&quot; beach and enjoy the stunning view of Mount Conero." data-it="Prendi una barca per la spiaggia delle &quot;Due Sorelle&quot; e goditi la vista mozzafiato del Monte Conero.">Take a boat to the "Due Sorelle" beach and enjoy the stunning view of Mount Conero.</p>
                     </div>
                 </div>
             </div>
@@ -189,7 +195,7 @@
     </main>
 
     <footer>
-        <p>Can't wait to see you there!<br>A & M</p>
+        <p data-en="Can't wait to see you there!<br>A & M" data-it="Non vediamo l'ora di vederti lì!<br>A & M">Can't wait to see you there!<br>A & M</p>
     </footer>
 
     <script type="module" src="app.js"></script>

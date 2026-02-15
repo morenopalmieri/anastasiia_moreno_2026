@@ -45,23 +45,26 @@ document.addEventListener('DOMContentLoaded', () => {
             const div = document.createElement('div');
             div.classList.add('guest-entry');
             div.innerHTML = `
-                <h4>Guest ${rsvpGuestCount}</h4>
+                <h4 data-en="Guest ${rsvpGuestCount}" data-it="Ospite ${rsvpGuestCount}">Guest ${rsvpGuestCount}</h4>
                 <div class="form-group">
-                    <input type="text" class="guest-name" placeholder="Name" required>
-                    <input type="text" class="guest-surname" placeholder="Surname" required>
+                    <input type="text" class="guest-name" placeholder="Name" required data-en="Name" data-it="Nome">
+                    <input type="text" class="guest-surname" placeholder="Surname" required data-en="Surname" data-it="Cognome">
                 </div>
                 <div class="form-group">
                     <select class="guest-diet">
-                        <option value="None">Diet: None</option>
-                        <option value="Vegetarian">Vegetarian</option>
-                        <option value="Vegan">Vegan</option>
-                        <option value="Gluten Free">Gluten Free</option>
-                        <option value="Other">Other</option>
+                        <option value="None" data-en="Diet: None" data-it="Dieta: Nessuna">Diet: None</option>
+                        <option value="Vegetarian" data-en="Vegetarian" data-it="Vegetariano">Vegetarian</option>
+                        <option value="Vegan" data-en="Vegan" data-it="Vegano">Vegan</option>
+                        <option value="Gluten Free" data-en="Gluten Free" data-it="Senza Glutine">Gluten Free</option>
+                        <option value="Other" data-en="Other" data-it="Altro">Other</option>
                     </select>
                 </div>
-                <input type="text" class="guest-details" placeholder="Allergies / Details">
+                <input type="text" class="guest-details" placeholder="Allergies / Details" data-en="Allergies / Details" data-it="Allergie / Dettagli">
             `;
             rsvpExtraGuestsContainer.appendChild(div);
+
+            // Re-apply language translations to newly generated fields
+            setLanguage(localStorage.getItem('weddingLang') || 'en');
         });
     }
 
@@ -150,12 +153,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 const div = document.createElement('div');
                 div.classList.add('form-group');
                 div.innerHTML = `
-                    <label>Guest ${busGuestCount} Name</label>
-                    <input type="text" name="guest${busGuestCount}_name" placeholder="Name">
-                    <input type="text" name="guest${busGuestCount}_surname" placeholder="Surname" style="margin-top:5px;">
+                    <label data-en="Guest ${busGuestCount} Name" data-it="Nome Ospite ${busGuestCount}">Guest ${busGuestCount} Name</label>
+                    <input type="text" name="guest${busGuestCount}_name" placeholder="Name" data-en="Name" data-it="Nome">
+                    <input type="text" name="guest${busGuestCount}_surname" placeholder="Surname" style="margin-top:5px;" data-en="Surname" data-it="Cognome">
                 `;
                 busGuestsContainer.appendChild(div);
                 
+                // Re-apply language translations to newly generated fields
+                setLanguage(localStorage.getItem('weddingLang') || 'en');
+
                 if (busGuestCount === MAX_BUS_GUESTS) {
                     busAddGuestBtn.style.display = 'none';
                 }
@@ -206,4 +212,35 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+});
+
+// ==========================================
+// 3. LANGUAGE SWITCHER LOGIC
+// ==========================================
+window.setLanguage = function(lang) {
+    // Find all elements that have a data attribute for the chosen language
+    document.querySelectorAll(`[data-${lang}]`).forEach(el => {
+        
+        // Handle input fields and textareas (changing placeholders)
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+            el.placeholder = el.getAttribute(`data-${lang}`);
+        } 
+        // Handle dropdown options
+        else if (el.tagName === 'OPTION') {
+            el.text = el.getAttribute(`data-${lang}`);
+        }
+        // Handle standard text
+        else {
+            el.innerHTML = el.getAttribute(`data-${lang}`);
+        }
+    });
+    
+    // Save the user's preference in their browser
+    localStorage.setItem('weddingLang', lang);
+};
+
+// Check if user already selected a language when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+    const savedLang = localStorage.getItem('weddingLang') || 'en';
+    setLanguage(savedLang);
 });
