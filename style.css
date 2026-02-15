@@ -72,7 +72,7 @@ h1, h2, h3 {
 }
 
 .hero h1 { 
-    font-size: 6rem; /* Larger hero title */
+    font-size: 8rem; /* Larger hero title */
     margin-bottom: 10px; /* Space below title */
 }
 
@@ -296,6 +296,11 @@ input, select {
 /* =========================================
    ACCOMMODATION & FOOTER
    ========================================= */
+
+.town-list ul {
+    text-align: left;
+    display: inline-block; /* Keeps the list block centered while items align left */
+}
 
 .activity-card {
     display: flex; 
