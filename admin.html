@@ -1,132 +1,121 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Admin Panel</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* Specific Admin Styles */
-        body { background: #f4f4f4; color: #333; padding: 20px; }
-        .admin-container { 
-            max-width: 1200px; 
-            margin: 20px auto; 
-            padding: 40px; 
-            background: white; 
-            box-shadow: 0 0 20px rgba(0,0,0,0.1); 
-            border-radius: 8px;
-        }
-        h1, h2 { color: #5e6b54; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 30px; }
+﻿import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+import { getFirestore, collection, getDocs, orderBy, query } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+
+// --- FIREBASE CONFIGURATION (ORIGINAL) ---
+const firebaseConfig = {
+    apiKey: "AIzaSyC1tfxGaRFLvlfeWSTXqpIQV_a1CmOakhQ",
+    authDomain: "wedding-rsvp-19062026.firebaseapp.com",
+    projectId: "wedding-rsvp-19062026",
+    storageBucket: "wedding-rsvp-19062026.firebasestorage.app",
+    messagingSenderId: "285063942294",
+    appId: "1:285063942294:web:479c8fc7dcb074ce8272b7",
+    measurementId: "G-SZ2PSDY377"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// --- FUNCTION 1: LOAD MAIN GUEST LIST ---
+async function loadGuests() {
+    const tbody = document.getElementById('guestListBody');
+    if (!tbody) return; 
+
+    // Query rsvps collection ordered by newest first
+    const q = query(collection(db, "rsvps"), orderBy("timestamp", "desc"));
+    
+    try {
+        const querySnapshot = await getDocs(q);
+        let totalGuests = 0;
         
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; background: white; }
-        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
-        th { background-color: #5e6b54; color: white; font-family: 'Playfair Display', serif; }
-        tr:nth-child(even) { background-color: #f9f9f9; }
+        tbody.innerHTML = ''; // Clear loading state
 
-        .btn-download { 
-            background: #d4af37; /* Gold */
-            color: white; 
-            padding: 10px 20px; 
-            text-decoration: none; 
-            display: inline-block; 
-            cursor: pointer; 
-            border: none; 
-            border-radius: 4px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        .btn-download:hover { background: #b8962d; }
+        querySnapshot.forEach((doc) => {
+            const data = doc.data();
+            const mainContact = data.mainContact;
+            const mainEmail = data.email;
 
-        #loginOverlay { 
-            position: fixed; 
-            top: 0; left: 0; 
-            width: 100%; height: 100%; 
-            background: white; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            z-index: 999; 
-        }
-        .login-box {
-            text-align: center;
-            padding: 40px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        #adminPass { padding: 10px; width: 200px; border: 1px solid #ccc; border-radius: 4px; }
-        .login-box button { padding: 10px 20px; background: #5e6b54; color: white; border: none; cursor: pointer; border-radius: 4px; }
-    </style>
-</head>
-<body>
-
-    <div id="loginOverlay">
-        <div class="login-box">
-            <h2 style="border:none;">Admin Login</h2>
-            <p>Please enter the secret password</p>
-            <input type="password" id="adminPass" placeholder="Password">
-            <button onclick="checkPass()">Enter</button>
-        </div>
-    </div>
-
-    <div class="admin-container">
-        <h1>Wedding Guest List</h1>
-        <button onclick="exportTableToExcel('guestTable', 'Wedding_Guest_List.xls')" class="btn-download">
-            <i class="fas fa-file-excel"></i> Download Guest List
-        </button>
-        <p id="totalCount" style="font-weight: bold;">Total Guests: Loading...</p>
-        
-        <table id="guestTable">
-            <thead>
-                <tr>
-                    <th>Main Contact</th>
-                    <th>Email</th>
-                    <th>Guest Name</th>
-                    <th>Dietary</th>
-                    <th>Allergies/Notes</th>
-                </tr>
-            </thead>
-            <tbody id="guestListBody">
-                </tbody>
-        </table>
-
-        <h1 style="margin-top: 60px;">Bus Reservations</h1>
-        <button onclick="exportTableToExcel('busTable', 'Bus_Reservations.xls')" class="btn-download" style="background-color: #5e6b54;">
-            <i class="fas fa-bus"></i> Download Bus List
-        </button>
-        
-        <table id="busTable">
-            <thead>
-                <tr>
-                    <th>Main Contact</th>
-                    <th>Additional Guests</th>
-                    <th>Total Seats</th>
-                </tr>
-            </thead>
-            <tbody id="busTableBody">
-                </tbody>
-        </table>
-    </div>
-
-    <script type="module" src="admin.js"></script>
-
-    <script>
-        function checkPass() {
-            const pass = document.getElementById('adminPass').value;
-            // Your password set below
-            if(pass === "19062026") { 
-                document.getElementById('loginOverlay').style.display = 'none';
-            } else {
-                alert("Incorrect password");
-            }
-        }
-
-        // Allow "Enter" key to submit password
-        document.getElementById('adminPass').addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') {
-                checkPass();
+            // Process the guest array from each document
+            if (data.guests && Array.isArray(data.guests)) {
+                data.guests.forEach(guest => {
+                    totalGuests++;
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${mainContact}</td>
+                        <td>${mainEmail}</td>
+                        <td>${guest.name} ${guest.surname} (${guest.type})</td>
+                        <td>${guest.diet}</td>
+                        <td>${guest.details || '-'}</td>
+                    `;
+                    tbody.appendChild(tr);
+                });
             }
         });
-    </script>
-</body>
-</html>
+
+        const countElement = document.getElementById('totalCount');
+        if (countElement) {
+            countElement.innerText = `Total Guests: ${totalGuests}`;
+        }
+    } catch (error) {
+        console.error("Error loading guests:", error);
+    }
+}
+
+// --- FUNCTION 2: LOAD BUS RESERVATIONS ---
+async function loadBusReservations() {
+    const busTableBody = document.getElementById('busTableBody');
+    if (!busTableBody) return;
+
+    const q = query(collection(db, "bus_reservations"), orderBy("timestamp", "desc"));
+    
+    try {
+        const querySnapshot = await getDocs(q);
+        busTableBody.innerHTML = ''; 
+
+        querySnapshot.forEach((doc) => {
+            const data = doc.data();
+            const row = document.createElement('tr');
+
+            // Format Main Guest Name
+            const mainName = data.mainGuest ? `${data.mainGuest.name} ${data.mainGuest.surname}` : 'Unknown';
+
+            // Format Additional Guests List
+            let guestsList = "None";
+            if (data.additionalGuests && data.additionalGuests.length > 0) {
+                guestsList = data.additionalGuests.map(g => `${g.name} ${g.surname}`).join(", ");
+            }
+
+            // Calculate Seats
+            const seats = data.totalSeats || (1 + (data.additionalGuests ? data.additionalGuests.length : 0));
+
+            row.innerHTML = `
+                <td>${mainName}</td>
+                <td>${guestsList}</td>
+                <td>${seats}</td>
+            `;
+            busTableBody.appendChild(row);
+        });
+    } catch (error) {
+        console.error("Error loading bus reservations:", error);
+    }
+}
+
+// --- UTILITY: EXPORT TO EXCEL ---
+// Explicitly attached to window so the HTML button onclick can find it
+window.exportTableToExcel = function(tableID, filename = 'Wedding_Data.xls') {
+    const tableSelect = document.getElementById(tableID);
+    const tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+    
+    const downloadLink = document.createElement("a");
+    document.body.appendChild(downloadLink);
+    
+    downloadLink.href = 'data:application/vnd.ms-excel,' + tableHTML;
+    downloadLink.download = filename;
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+};
+
+// --- STARTUP LOGIC ---
+// Execute these functions as soon as the module loads to populate the tables
+loadGuests();
+loadBusReservations();

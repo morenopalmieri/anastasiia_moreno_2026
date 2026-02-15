@@ -18,14 +18,12 @@ const db = getFirestore(app);
 // --- FUNCTION 1: LOAD MAIN GUEST LIST ---
 async function loadGuests() {
     const tbody = document.getElementById('guestListBody');
-    if (!tbody) return; // Safety check
+    if (!tbody) return;
 
     const q = query(collection(db, "rsvps"), orderBy("timestamp", "desc"));
     const querySnapshot = await getDocs(q);
     
     let totalGuests = 0;
-    
-    // Clear existing content to prevent duplicates if called multiple times
     tbody.innerHTML = ''; 
 
     querySnapshot.forEach((doc) => {
@@ -33,7 +31,6 @@ async function loadGuests() {
         const mainContact = data.mainContact;
         const mainEmail = data.email;
 
-        // Loop through the array of guests in this submission
         if (data.guests && Array.isArray(data.guests)) {
             data.guests.forEach(guest => {
                 totalGuests++;
@@ -56,36 +53,29 @@ async function loadGuests() {
     }
 }
 
-// --- FUNCTION 2: LOAD BUS RESERVATIONS (New Addition) ---
+// --- FUNCTION 2: LOAD BUS RESERVATIONS ---
 async function loadBusReservations() {
     const busTableBody = document.getElementById('busTableBody');
-    if (!busTableBody) return; // Exit if the table doesn't exist in HTML
+    if (!busTableBody) return;
 
     const q = query(collection(db, "bus_reservations"), orderBy("timestamp", "desc"));
     
     try {
         const querySnapshot = await getDocs(q);
-        
-        let totalBusSeats = 0;
-        busTableBody.innerHTML = ''; // Clear previous content
+        busTableBody.innerHTML = ''; 
 
         querySnapshot.forEach((doc) => {
             const data = doc.data();
             const row = document.createElement('tr');
 
-            // 1. Format Main Guest Name
             const mainName = data.mainGuest ? `${data.mainGuest.name} ${data.mainGuest.surname}` : 'Unknown';
 
-            // 2. Format Additional Guests List
             let guestsList = "None";
             if (data.additionalGuests && data.additionalGuests.length > 0) {
                 guestsList = data.additionalGuests.map(g => `${g.name} ${g.surname}`).join(", ");
             }
 
-            // 3. Calculate Seats
-            // Use stored totalSeats, or calculate it based on array length + 1 (main guest)
             const seats = data.totalSeats || (1 + (data.additionalGuests ? data.additionalGuests.length : 0));
-            totalBusSeats += seats;
 
             row.innerHTML = `
                 <td>${mainName}</td>
@@ -94,14 +84,26 @@ async function loadBusReservations() {
             `;
             busTableBody.appendChild(row);
         });
-
-        // Optional: Display total bus count if you add an element with id="totalBusCount"
-        // console.log("Total Bus Seats Reserved:", totalBusSeats);
-
     } catch (error) {
         console.error("Error loading bus reservations:", error);
     }
 }
 
 // --- UTILITY: EXPORT TO EXCEL ---
-window.exportTableToExcel = function(tableID, filename = 'Wedding_Data.xls')
+window.exportTableToExcel = function(tableID, filename = 'Wedding_Data.xls') {
+    const tableSelect = document.getElementById(tableID);
+    const tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+    
+    const downloadLink = document.createElement("a");
+    document.body.appendChild(downloadLink);
+    
+    downloadLink.href = 'data:application/vnd.ms-excel,' + tableHTML;
+    downloadLink.download = filename;
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+}
+
+// --- STARTUP: RUN LOADERS ---
+// This ensures data is fetched when the page opens
+loadGuests();
+loadBusReservations();
